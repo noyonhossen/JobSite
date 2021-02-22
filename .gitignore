@@ -1,3 +1,4 @@
 /DreamJobs/.vs
 /DreamJobs/DreamJobs.Web/bin
 /DreamJobs/DreamJobs.Web/obj
+/DreamJobs/DreamJobs.Web/Logs/*.log
