@@ -24,4 +24,9 @@
     <Folder Include="Areas\Member\Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Libraries\DreamJobs.Data\DreamJobs.Data.csproj" />
+    <ProjectReference Include="..\Libraries\DreamJobs.Membership\DreamJobs.Membership.csproj" />
+  </ItemGroup>
+
 </Project>

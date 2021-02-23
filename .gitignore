@@ -4,3 +4,5 @@
 /DreamJobs/DreamJobs.Web/Logs/*.log
 /DreamJobs/Libraries/DreamJobs.Data/bin
 /DreamJobs/Libraries/DreamJobs.Data/obj
+/DreamJobs/Libraries/DreamJobs.Membership/bin
+/DreamJobs/Libraries/DreamJobs.Membership/obj
