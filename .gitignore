@@ -2,3 +2,5 @@
 /DreamJobs/DreamJobs.Web/bin
 /DreamJobs/DreamJobs.Web/obj
 /DreamJobs/DreamJobs.Web/Logs/*.log
+/DreamJobs/Libraries/DreamJobs.Data/bin
+/DreamJobs/Libraries/DreamJobs.Data/obj
