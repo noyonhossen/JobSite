@@ -7,10 +7,6 @@ namespace DreamJobs.Membership.Entities
 {
     public class ApplicationUser : IdentityUser<Guid>, IEntity<Guid>
     {
-        public string ImageUrl { get; set; }
-        public string FullName { get; set; }
-        public int Serial { get; set; }
-
         public ApplicationUser()
                     : base()
         {
@@ -32,7 +28,7 @@ namespace DreamJobs.Membership.Entities
         public ApplicationUser(string userName, string fullName, string mobileNumber, string email)
             : this(userName, mobileNumber, email)
         {
-            FullName = fullName;
+
         }
 
         public ApplicationUser(string userName, string fullName, string mobileNumber, string phone, string email)

@@ -34,12 +34,6 @@ namespace DreamJobs.Membership.Contexts
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            // To allow update 'ApplicationUser' as 'Serial' is an IdentityColumn
-            builder.Entity<ApplicationUser>(entity =>
-            {
-                entity.Property(user => user.Serial).ValueGeneratedOnAdd()
-                    .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
-            });
         }
     }
 }
