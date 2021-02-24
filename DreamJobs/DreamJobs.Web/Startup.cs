@@ -14,6 +14,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Autofac.Extensions.DependencyInjection;
 using Autofac;
+using DreamJobs.Membership.Contexts;
+using DreamJobs.Membership;
+using DreamJobs.Membership.Entities;
+using DreamJobs.Membership.Services;
+using Microsoft.AspNetCore.Authorization;
+using DreamJobs.Membership.Security;
 
 namespace DreamJobs.Web
 {
@@ -40,18 +46,88 @@ namespace DreamJobs.Web
             var connectionString = Configuration.GetConnectionString(connectionStringName);
             var migrationAssemblyName = typeof(Startup).Assembly.FullName;
 
-            builder.RegisterModule(new WebModule(connectionString, migrationAssemblyName));
+            builder.RegisterModule(new WebModule(connectionString, migrationAssemblyName))
+                .RegisterModule(new MembershipModule(connectionString, migrationAssemblyName));
         }
         #endregion
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionStringName = "DefaultConnection";
+            var connectionString = Configuration.GetConnectionString(connectionStringName);
+            var migrationAssemblyName = typeof(Startup).Assembly.FullName;
+
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+             options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
+
+            services.AddDbContext<MembershipContext>(options =>
+             options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
+
+            services
+                .AddIdentity<ApplicationUser, Role>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddUserManager<UserManager>()
+                .AddRoleManager<RoleManager>()
+                .AddSignInManager<SignInManager>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+
+                // Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings.
+                options.User.AllowedUserNameCharacters =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                options.User.RequireUniqueEmail = false;
+            });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+
+                options.LoginPath = "/Account/Signin";
+                options.AccessDeniedPath = "/Account/AccessDenied";
+                options.SlidingExpiration = true;
+            });
+
+            services.AddSingleton<IAuthorizationHandler, InternalUserRequirementHandler>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("InternalUser", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.Requirements.Add(new InternalUserRequirement());
+                });
+
+                options.AddPolicy("InstructorPolicy", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.Requirements.Add(new CompanyRequirement());
+                });
+
+                options.AddPolicy("MemberPolicy", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.Requirements.Add(new MemberRequirement());
+                });
+            });
+
             services.AddControllersWithViews();
             services.AddRazorPages();
             // Autofac options
