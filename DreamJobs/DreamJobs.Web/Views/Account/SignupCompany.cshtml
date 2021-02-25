@@ -1,7 +1,7 @@
-﻿@model DreamJobs.Web.Models.Account.SignUpModel
+﻿@model DreamJobs.Web.Models.Account.SignUpCompanyModel
 
 @{
-    ViewData["Title"] = "Signup";
+    ViewData["Title"] = "Signup Company";
 }
 
 @section styles
@@ -19,7 +19,7 @@
                     <!-- Nested Row within Card Body -->
                     <div class="row">
                         <div class="col-lg-6 d-none d-lg-block bg-login-image">
-                            <img src="~/img/signup.jpg" class="img-fluid w-100 h-100" alt="Signup Logo" />
+                            <img src="~/img/hire_talent.png" class="img-fluid w-100 h-100" alt="Hire Talent Logo" />
                         </div>
                         <div class="col-lg-6">
                             <div class="p-5 py-lg-12">
@@ -60,9 +60,6 @@
                                 <div class="small">
                                     Already created an account using your email and password?
                                     <a class="d-block" asp-controller="Account" asp-action="Signin">Sign In Using E-mail Address</a>
-                                </div>
-                                <div class="small pt-lg-5">
-                                    <a class="d-block text-danger" asp-controller="Account" asp-action="SignupCompany">Sign Up become an Company</a>
                                 </div>
 
                             </div>
