@@ -3,14 +3,16 @@ using DreamJobs.Membership.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DreamJobs.Web.Migrations
+namespace DreamJobs.Web.Migrations.Membership
 {
     [DbContext(typeof(MembershipContext))]
-    partial class MembershipContextModelSnapshot : ModelSnapshot
+    [Migration("20210225114533_MembershipInitilization")]
+    partial class MembershipInitilization
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

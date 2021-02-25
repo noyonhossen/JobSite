@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DreamJobs.Web.Migrations
+namespace DreamJobs.Web.Migrations.Membership
 {
     public partial class MembershipInitilization : Migration
     {

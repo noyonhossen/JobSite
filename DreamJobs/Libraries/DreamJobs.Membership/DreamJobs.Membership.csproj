@@ -17,9 +17,9 @@
   <ItemGroup>
     <Folder Include="BusinessObjects\" />
     <Folder Include="DTOs\" />
-    <Folder Include="UnitOfWorks\" />
     <Folder Include="Repositories\" />
     <Folder Include="Seeds\" />
+    <Folder Include="UnitOfWorks\" />
   </ItemGroup>
 
 </Project>
