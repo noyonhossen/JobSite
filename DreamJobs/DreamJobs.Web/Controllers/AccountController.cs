@@ -65,6 +65,42 @@ namespace DreamJobs.Web.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> SignupCompany(string returnUrl = null)
+        {
+            var model = new SignUpCompanyModel
+            {
+                ReturnUrl = returnUrl
+            };
+            await model.GetExternalLoginProviderAsync();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SignupCompany(SignUpCompanyModel model)
+        {
+            model.ReturnUrl ??= Url.Content("~/");
+            await model.GetExternalLoginProviderAsync();
+
+            if (ModelState.IsValid)
+            {
+
+                var (result, user) = await model.CreateUserAsync();
+
+                if (result.Succeeded && user != null)
+                {
+                    return RedirectToAction("Index", "Dashboard", new { Area = "Company" });
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+            }
+            return View(model);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Signin(string returnUrl = null)
         {
             var model = new LoginModel();
