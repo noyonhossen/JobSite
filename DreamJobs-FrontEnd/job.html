@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <style>
+        .bg-card{
+            background-color: #f3f1f1;
+        }
+        a {
+            text-decoration: none;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 px-5">
+                <div class="card px-2 m-2">
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                              <div class="col">
+                                <label for="keyword">Keyword</label>
+                                <input type="text" class="form-control" id="keyword" placeholder="Keyword">
+                              </div>
+                              <div class="col">
+                                <label for="category">Category</label>
+                                <select id="category" class="form-control">
+                                    <option selected>--Choose Category--</option>
+                                    <option>IT & Telecommunication</option>
+                                    <option>Education/Training</option>
+                                    <option>Electrician/ Construction/ Repair</option>
+                                  </select>
+                              </div>
+                              <div class="col">
+                                <label for="location">Location</label>
+                                <select id="location" class="form-control">
+                                    <option selected>--Choose Location--</option>
+                                    <option>Dhaka</option>
+                                    <option>Rajshahi</option>
+                                    <option>Dinajpur</option>
+                                  </select>
+                              </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col">
+                                  <label for="Job Nature">Job Nature</label>
+                                  <select id="Job Nature" class="form-control">
+                                      <option selected>Any</option>
+                                      <option>Full-Time</option>
+                                      <option>Part-Time</option>
+                                      <option>Intern</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                  <label for="locaJobLeveltion">Job Level</label>
+                                  <select id="JobLevel" class="form-control">
+                                      <option selected>Any</option>
+                                      <option>Entry Level</option>
+                                      <option>Mid Level</option>
+                                      <option>Top Level</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="ExperienceRange">Experience Range</label>
+                                    <select id="ExperienceRange" class="form-control">
+                                        <option selected>Any</option>
+                                        <option>Below 1 year</option>
+                                        <option>1 - &#60; 3 years</option>
+                                        <option>3 - &#60; 5 years</option>
+                                        <option>5 - &#60; 10 years</option>
+                                        <option>Over 10 years</option>
+                                      </select>
+                                </div>
+                                <div class="col">
+                                    <label for="AgeRange">Age Range</label>
+                                    <select id="AgeRange" class="form-control">
+                                        <option selected>Any</option>
+                                        <option>Below 20 years</option>
+                                        <option>20 - &#60; 30 years</option>
+                                        <option>30 - &#60; 40 years</option>
+                                        <option>40 - &#60; 50 years</option>
+                                        <option>Over 50 years</option>
+                                      </select>
+                                </div>
+                              </div>
+                            <div class="row">
+                                <div class="col-6 mt-2">
+                                    <label for="Posted">Posted: </label>
+                                    <label class="radio-inline">
+                                        <input id="PostedAny" value="PostedAny" name="Posted" type="radio" checked/> Any
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input id="PostedToday" value="PostedToday" name="Posted" type="radio" /> Today
+                                    </label>
+                                </div>
+                                <div class="col-6 mt-2">
+                                    <label for="Posted">Deadline: </label>
+                                    <label class="radio-inline">
+                                        <input id="DeadlineAny" value="DeadlineAny" name="Deadline" type="radio" checked/> Any
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input id="DeadlineToday" value="DeadlineToday" name="Deadline" type="radio" /> Today
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <hr>
+                                    <a href="job.html" asp-controller="Account" asp-action="Register" class="btn btn-primary"><i class="fas fa-search"></i> Search</a>
+                                </div>
+                            </div>
+                          </form>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                      <a href="job-details.html"><h4 class="text-success">Software Engineer</h4></a>
+                    </div>
+                    <div class="card-body bg-card">
+                        <h5 class="card-title text-dark">
+                            BJIT Ltd.
+                        </h5>
+                        <h6 class="card-text text-secondary">
+                          <i class="fas fa-map-marker-alt"></i>
+                          <span>Dhaka</span>
+                        </h6>
+                        <div class="row">
+                            <div class="col-9">
+                                <h6 class="card-text text-secondary">
+                                    <i class="fas fa-user-graduate"></i>
+                                    <span>Bachelor of Science (B.Sc) in CSE</span>
+                                </h6>
+                                <h6 class="card-text text-secondary">
+                                    <i class="fas fa-medal"></i>
+                                    Skills: <span>C, C#, HTML, CSS, JS</span>
+                                </h6>
+                                <h6 class="card-text text-secondary">
+                                    <i class="fas fa-handshake"></i>
+                                    Matching Skills: <span>C, C#, HTML, CSS</span>
+                                </h6>
+                            </div>
+                            <div class="col-3">
+                                <h6 class="card-text text-secondary">
+                                    <i class="fas fa-hands"></i>
+                                    Vacancy: <span>5</span>
+                                </h6>
+                                <h6 class="card-text text-secondary">
+                                    <i class="fas fa-briefcase"></i>
+                                    <span>2 to 4 year(s)</span>
+                                </h6>
+                                <h6 class="card-text text-secondary">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    Deadline: <span>26 Mar 2021</span>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
