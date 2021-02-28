@@ -10,7 +10,10 @@
     <div class="col-8">
         <div class="card">
             <div class="card-header">
-                <h4 class="text-success">Profile Details</h4>
+                <h4 class="text-success">
+                    Profile Details 
+                    <a asp-area="Company" asp-controller="CompanyProfile" asp-action="EditCompanyProfile" class="btn btn-primary float-right"><i class="nav-icon far fa-edit"></i> Edit Company Profile</a>
+                </h4>
             </div>
             <div class="card-body bg-card">
                 <div class="row">
@@ -54,7 +57,7 @@
                         <h5 class="d-inline">Website : </h5>
                     </div>
                     <div class="col-9">
-                        <a href="http://@Model.Website" target="_blank">@Model.Website</a>
+                        <a href="@Model.Website" target="_blank">@Model.Website</a>
                     </div>
                 </div>
             </div>
