@@ -30,5 +30,11 @@ namespace DreamJobs.Framework.Services
             await _companyUnitOfWork.CompanyRepository.EditAsync(company);
             await _companyUnitOfWork.SaveAsync();
         }
+
+        public async Task AddAsync(Entities.Company company)
+        {
+            await _companyUnitOfWork.CompanyRepository.AddAsync(company);
+            await _companyUnitOfWork.SaveAsync();
+        }
     }
 }

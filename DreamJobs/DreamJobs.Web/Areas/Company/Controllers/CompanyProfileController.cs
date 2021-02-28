@@ -12,10 +12,18 @@ namespace DreamJobs.Web.Areas.Company.Controllers
     {
         public async Task<IActionResult> ViewCompanyProfile()
         {
-            var userName = User.Identity.Name;
-            var model = new ViewCompanyProfileModel();
-            await model.LoadModelDataAsync(userName);
-            return View(model);
+            try
+            {
+                var userName = User.Identity.Name;
+                var model = new ViewCompanyProfileModel();
+                await model.LoadModelDataAsync(userName);
+                return View(model);
+            }
+            catch
+            {
+
+                return RedirectToAction("AddCompanyProfile");
+            }
         }
 
         public async Task<IActionResult> EditCompanyProfile()
@@ -32,6 +40,24 @@ namespace DreamJobs.Web.Areas.Company.Controllers
             if (ModelState.IsValid)
             {
                 await model.EditProfile(User.Identity.Name);
+                return RedirectToAction("ViewCompanyProfile");
+            }
+            return View(model);
+        }
+
+        public IActionResult AddCompanyProfile()
+        {
+            var model = new AddCompanyProfileModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddCompanyProfile(AddCompanyProfileModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                await model.AddProfileDetails(User.Identity.Name);
                 return RedirectToAction("ViewCompanyProfile");
             }
             return View(model);

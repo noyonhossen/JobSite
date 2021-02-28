@@ -10,7 +10,7 @@ namespace DreamJobs.Framework.Services
     {
         Task<Company> GetCompanyDetailsAsync(Guid id);
         Task UpdateAsync(Entities.Company company);
-
+        Task AddAsync(Entities.Company company);
 
     }
 }

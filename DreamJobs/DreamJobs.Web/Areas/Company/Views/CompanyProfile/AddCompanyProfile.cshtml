@@ -1,0 +1,70 @@
+﻿@model AddCompanyProfileModel
+
+@{
+    ViewData["Title"] = "Add Company Profile";
+}
+
+<div class="row p-5">
+    <div class="col-2">
+
+    </div>
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="text-success">
+                    Add Company Profile
+                </h4>
+            </div>
+            <div class="card-body bg-card">
+                <form asp-area="Company" asp-controller="CompanyProfile" asp-action="AddCompanyProfile" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Name" class="label">Company Name</label>
+                        <input type="text" asp-for="Name" class="form-control" id="Name" placeholder="Enter Company Name">
+                        <p class="text-danger my-2">
+                            <span asp-validation-for="Name"></span>
+                        </p>
+                    </div>
+                    <!-- email field is not required to be shown if signed up using email address-->
+                    <div class="form-group">
+                        <label asp-for="Address" class="label">Company Address</label>
+                        <input type="text" asp-for="Address" class="form-control" id="Address" placeholder="Enter Company Address">
+                        <p class="text-danger my-2">
+                            <span asp-validation-for="Address"></span>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Website" class="label">Company Website</label>
+                        <input type="url" asp-for="Website" class="form-control" id="Website" placeholder="Enter Company Website">
+                        <p class="text-danger my-2">
+                            <span asp-validation-for="Website"></span>
+                        </p>
+                        <p class="form-text">
+                            If your company has no website type "none".
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Category" class="label">Enter Category</label>
+                        <input type="text" asp-for="Category" class="form-control" id="Category" placeholder="Enter Company Category">
+                        <p class="text-danger my-2">
+                            <span asp-validation-for="Category"></span>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AboutCompany" class="label">About Company</label>
+                        <textarea asp-for="AboutCompany" class="form-control" rows="3" placeholder="Write about your company"></textarea>
+                    </div>
+                    <hr>
+                    <button type="submit" class="btn btn-primary">
+                        Save Changes
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-2">
+
+    </div>
+</div>
+
+
+
