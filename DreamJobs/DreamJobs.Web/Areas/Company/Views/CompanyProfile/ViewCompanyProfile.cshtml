@@ -3,9 +3,65 @@
     ViewData["Title"] = "Company Profile";
 }
 
-<h1>@Model.Name</h1>
-<h1>@Model.AboutCompany</h1>
-<h1>@Model.Category</h1>
-<h1>@Model.Address</h1>
-<h1>@Model.Website</h1>
+<div class="row p-5">
+    <div class="col-2">
+
+    </div>
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="text-success">Profile Details</h4>
+            </div>
+            <div class="card-body bg-card">
+                <div class="row">
+                    <div class="col-3">
+                        <h5 class="d-inline">Company Name : </h5>
+                    </div>
+                    <div class="col-9">
+                        @Model.Name
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-3">
+                        <h5 class="d-inline">Website : </h5>
+                    </div>
+                    <div class="col-9">
+                        @Model.AboutCompany
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-3">
+                        <h5 class="d-inline">Address : </h5>
+                    </div>
+                    <div class="col-9">
+                        @Model.Address
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-3">
+                        <h5 class="d-inline">Category : </h5>
+                    </div>
+                    <div class="col-9">
+                        @Model.Category
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-3">
+                        <h5 class="d-inline">Website : </h5>
+                    </div>
+                    <div class="col-9">
+                        <a href="http://@Model.Website" target="_blank">@Model.Website</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-2">
+
+    </div>
+</div>
 
