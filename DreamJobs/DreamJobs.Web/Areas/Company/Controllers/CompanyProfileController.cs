@@ -21,16 +21,22 @@ namespace DreamJobs.Web.Areas.Company.Controllers
             }
             catch
             {
-
                 return RedirectToAction("AddCompanyProfile");
             }
         }
 
         public async Task<IActionResult> EditCompanyProfile()
         {
-            var model = new EditCompanyProfileModel();
-            await model.LoadModelDataAsync(User.Identity.Name);
-            return View(model);
+            try
+            {
+                var model = new EditCompanyProfileModel();
+                await model.LoadModelDataAsync(User.Identity.Name);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("AddCompanyProfile");
+            }
         }
 
         [HttpPost]

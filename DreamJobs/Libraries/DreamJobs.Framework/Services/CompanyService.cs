@@ -3,6 +3,7 @@ using DreamJobs.Membership.Entities;
 using DreamJobs.Membership.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,7 +23,8 @@ namespace DreamJobs.Framework.Services
 
         public async Task<Entities.Company> GetCompanyDetailsAsync(Guid id)
         {
-            return await _companyUnitOfWork.CompanyRepository.GetByIdAsync(id);
+            var companies = await _companyUnitOfWork.CompanyRepository.GetAsync(x=> x.UserId == id);
+            return companies.FirstOrDefault();
         }
 
         public async Task UpdateAsync(Entities.Company company)
