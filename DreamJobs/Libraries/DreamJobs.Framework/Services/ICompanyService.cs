@@ -9,6 +9,8 @@ namespace DreamJobs.Framework.Services
     public interface ICompanyService
     {
         Task<Company> GetCompanyDetailsAsync(Guid id);
-        
+        Task UpdateAsync(Entities.Company company);
+
+
     }
 }

@@ -24,5 +24,11 @@ namespace DreamJobs.Framework.Services
         {
             return await _companyUnitOfWork.CompanyRepository.GetByIdAsync(id);
         }
+
+        public async Task UpdateAsync(Entities.Company company)
+        {
+            await _companyUnitOfWork.CompanyRepository.EditAsync(company);
+            await _companyUnitOfWork.SaveAsync();
+        }
     }
 }

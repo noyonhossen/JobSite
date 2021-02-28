@@ -18,9 +18,23 @@ namespace DreamJobs.Web.Areas.Company.Controllers
             return View(model);
         }
 
-        public IActionResult EditCompanyProfile()
+        public async Task<IActionResult> EditCompanyProfile()
         {
-            return View();
+            var model = new EditCompanyProfileModel();
+            await model.LoadModelDataAsync(User.Identity.Name);
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditCompanyProfile(EditCompanyProfileModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                await model.EditProfile(User.Identity.Name);
+                return RedirectToAction("ViewCompanyProfile");
+            }
+            return View(model);
         }
 
     }
