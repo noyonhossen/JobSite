@@ -19,6 +19,8 @@ using DreamJobs.Membership.Entities;
 using DreamJobs.Membership.Services;
 using Microsoft.AspNetCore.Authorization;
 using DreamJobs.Membership.Security;
+using DreamJobs.Framework;
+using DreamJobs.Framework.Contexts;
 
 namespace DreamJobs.Web
 {
@@ -46,7 +48,8 @@ namespace DreamJobs.Web
             var migrationAssemblyName = typeof(Startup).Assembly.FullName;
 
             builder.RegisterModule(new WebModule(connectionString, migrationAssemblyName))
-                .RegisterModule(new MembershipModule(connectionString, migrationAssemblyName));
+                .RegisterModule(new MembershipModule(connectionString, migrationAssemblyName))
+                .RegisterModule(new FrameworkModule(connectionString, migrationAssemblyName));
         }
         #endregion
 
@@ -61,6 +64,9 @@ namespace DreamJobs.Web
              options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
 
             services.AddDbContext<MembershipContext>(options =>
+             options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
+
+            services.AddDbContext<FrameworkContext>(options =>
              options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
 
             services

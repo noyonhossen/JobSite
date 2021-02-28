@@ -21,7 +21,6 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Company\Data\" />
-    <Folder Include="Areas\Company\Models\" />
     <Folder Include="Areas\Member\Data\" />
     <Folder Include="Areas\Member\Models\" />
     <Folder Include="Data\Migrations\" />
@@ -30,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Libraries\DreamJobs.Data\DreamJobs.Data.csproj" />
+    <ProjectReference Include="..\Libraries\DreamJobs.Framework\DreamJobs.Framework.csproj" />
     <ProjectReference Include="..\Libraries\DreamJobs.Membership\DreamJobs.Membership.csproj" />
   </ItemGroup>
 
