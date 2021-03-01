@@ -21,5 +21,11 @@ namespace DreamJobs.Web.Models
         {
             _userService = userService;
         }
+
+        public async Task<ApplicationUser> GetUserAsync(string username)
+        {
+            return await _userService.FindByNameAsync(username);
+
+        }
     }
 }

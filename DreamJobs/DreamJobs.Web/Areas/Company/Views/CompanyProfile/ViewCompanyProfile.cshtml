@@ -1,0 +1,70 @@
+﻿@model ViewCompanyProfileModel
+@{
+    ViewData["Title"] = "Company Profile";
+}
+
+<div class="row p-5">
+    <div class="col-2">
+
+    </div>
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="text-success">
+                    Profile Details 
+                    <a asp-area="Company" asp-controller="CompanyProfile" asp-action="EditCompanyProfile" class="btn btn-primary float-right"><i class="nav-icon far fa-edit"></i> Edit Company Profile</a>
+                </h4>
+            </div>
+            <div class="card-body bg-card">
+                <div class="row">
+                    <div class="col-3">
+                        <h5 class="d-inline">Company Name : </h5>
+                    </div>
+                    <div class="col-9">
+                        @Model.Name
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-3">
+                        <h5 class="d-inline">About Company : </h5>
+                    </div>
+                    <div class="col-9">
+                        @Model.AboutCompany
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-3">
+                        <h5 class="d-inline">Address : </h5>
+                    </div>
+                    <div class="col-9">
+                        @Model.Address
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-3">
+                        <h5 class="d-inline">Category : </h5>
+                    </div>
+                    <div class="col-9">
+                        @Model.Category
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-3">
+                        <h5 class="d-inline">Website : </h5>
+                    </div>
+                    <div class="col-9">
+                        <a href="@Model.Website" target="_blank">@Model.Website</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-2">
+
+    </div>
+</div>
+

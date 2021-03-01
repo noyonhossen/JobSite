@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DreamJobs.Data\DreamJobs.Data.csproj" />
+    <ProjectReference Include="..\DreamJobs.Membership\DreamJobs.Membership.csproj" />
+  </ItemGroup>
+
+</Project>
