@@ -2,7 +2,7 @@
 
 <div class="card p-2">
     <div class="card-header">
-        <a href="job-details.html"><h4 class="text-success">@Model.JobTitle</h4></a>
+        <a asp-area="Company" asp-controller="Job" asp-action="ViewJobDetails" asp-route-jobId="@Model.JobId"><h4 class="text-success">@Model.JobTitle</h4></a>
     </div>
     <div class="card-body bg-card">
         <div class="row">

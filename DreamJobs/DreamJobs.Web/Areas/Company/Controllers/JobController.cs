@@ -35,5 +35,12 @@ namespace DreamJobs.Web.Areas.Company.Controllers
             await model.GetCompanyAllJobAsync(User.Identity.Name);
             return View(model);
         }
+
+        public async Task<IActionResult> ViewJobDetails(Guid jobId)
+        {
+            var model = new CompanyJobDetailsModel();
+            await model.GetCompanyAllJobAsync(jobId);
+            return View(model);
+        }
     }
 }

@@ -7,6 +7,7 @@ namespace DreamJobs.Web.Models
 {
     public class JobCardShortListModel
     {
+        public Guid JobId { get; set; }
         public string JobTitle { get; set; }
         public string CompanyName { get; set; }
         public Nullable<int> Vacancy { get; set; }

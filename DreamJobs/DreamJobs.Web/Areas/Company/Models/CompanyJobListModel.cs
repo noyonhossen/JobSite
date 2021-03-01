@@ -37,6 +37,7 @@ namespace DreamJobs.Web.Areas.Company.Models
             {
                 var jobCardShortList = new JobCardShortListModel
                 {
+                    JobId = companyJob.Id,
                     JobTitle = companyJob.JobTitle,
                     Vacancy = companyJob.Vacancy,
                     CompanyName = companyDetails.Name,
