@@ -1,4 +1,5 @@
 ﻿using DreamJobs.Framework.Entities;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DreamJobs.Framework.Services
@@ -8,6 +9,6 @@ namespace DreamJobs.Framework.Services
         //Task<Job> GetJobDetailsAsync(Guid id);
         //Task UpdateAsync(Job job);
         Task AddAsync(Job job);
-
+        Task<IList<Job>> GetCompanyAllJobAsync(Company companyInfo);
     }
 }

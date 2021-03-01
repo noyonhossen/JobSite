@@ -1,7 +1,20 @@
-﻿
+﻿@model CompanyJobListModel
+
 @{
     ViewData["Title"] = "ViewJobs";
 }
 
-<h1>ViewJobs</h1>
+<h1>All Posted Jobs</h1>
+
+@if (Model.JobCardShortLists == null)
+{
+    <h1>No job posted yet.</h1>
+}
+else
+{
+    @foreach (var singleCard in Model.JobCardShortLists)
+    {
+        <partial name="_JobCardShortList" model="@singleCard" />
+    }
+}
 
