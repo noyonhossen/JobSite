@@ -13,10 +13,15 @@
             <div class="card-body bg-card">
                 <form asp-area="Company" asp-controller="Job" asp-action="AddJob" method="post" enctype="multipart/form-data">
                     <div class="row">
+                        <div class="col">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <label asp-for="JobTitle" class="label">Job Title</label>
-                                <input type="text" asp-for="JobTitle" class="form-control" id="JobTitle" placeholder="Enter Job Title">
+                                <input type="text" asp-for="JobTitle" class="form-control" id="JobTitle" placeholder="Software Engineer" required>
                                 <p class="text-danger my-2">
                                     <span asp-validation-for="JobTitle"></span>
                                 </p>
@@ -27,40 +32,43 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="JobResponsibilities" class="label">Job Responsibilities</label>
-                                <textarea asp-for="JobResponsibilities" class="form-control" rows="3" placeholder="Write about Job Responsibilities"></textarea>
+                                <textarea asp-for="JobResponsibilities" class="form-control" rows="3" placeholder="Write about Job Responsibilities" required></textarea>
+                                <p class="text-danger my-2">
+                                    <span asp-validation-for="JobResponsibilities"></span>
+                                </p>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Vacancy" class="label">Vacancy</label>
-                                <input type="number" asp-for="Vacancy" class="form-control" id="Vacancy" placeholder="Enter Number of Job Vacancy">
+                                <input type="number" asp-for="Vacancy" class="form-control" id="Vacancy" placeholder="1">
                                 <p class="text-danger my-2">
                                     <span asp-validation-for="Vacancy"></span>
                                 </p>
                             </div>
                             <div class="form-group">
                                 <label asp-for="Salary" class="label">Enter Salary</label>
-                                <input type="text" asp-for="Salary" class="form-control" id="Salary" placeholder="Enter Salary">
+                                <input type="text" asp-for="Salary" class="form-control" id="Salary" placeholder="Negotiable">
                                 <p class="text-danger my-2">
                                     <span asp-validation-for="Salary"></span>
                                 </p>
                             </div>
                             <div class="form-group">
                                 <label asp-for="JobLocation" class="label">Enter Job Location</label>
-                                <input type="text" asp-for="JobLocation" class="form-control" id="JobLocation" placeholder="Enter Job Location">
+                                <input type="text" asp-for="JobLocation" class="form-control" id="JobLocation" placeholder="Anywhere in Bangladesh">
                                 <p class="text-danger my-2">
                                     <span asp-validation-for="JobLocation"></span>
                                 </p>
                             </div>
                             <div class="form-group">
                                 <label asp-for="WorkPlace" class="label">Enter Work Place</label>
-                                <input type="text" asp-for="WorkPlace" class="form-control" id="WorkPlace" placeholder="Enter Work Place">
+                                <input type="text" asp-for="WorkPlace" class="form-control" id="WorkPlace" placeholder="Work at office">
                                 <p class="text-danger my-2">
                                     <span asp-validation-for="WorkPlace"></span>
                                 </p>
                             </div>
                             <div class="form-group">
                                 <label asp-for="SkillsRequired" class="label">Skills Required</label>
-                                <input type="text" asp-for="SkillsRequired" class="form-control" id="SkillsRequired" placeholder="Enter Skills Required">
-                                <small>Enter skills seperated by comma(,)</small>
+                                <input type="text" asp-for="SkillsRequired" class="form-control" id="SkillsRequired" placeholder="Enter Skills Required" required>
+                                <p>Enter skills seperated by comma(,). Example: C,C#,HTML,JS</p>
                                 <p class="text-danger my-2">
                                     <span asp-validation-for="SkillsRequired"></span>
                                 </p>
@@ -95,7 +103,7 @@
                             </div>
                             <div class="form-group">
                                 <label asp-for="DeadLine" class="label">Deadline</label>
-                                <input type="date" asp-for="DeadLine" class="form-control" id="DeadLine">
+                                <input type="date" asp-for="DeadLine" class="form-control" id="DeadLine" required>
                                 <p class="text-danger my-2">
                                     <span asp-validation-for="DeadLine"></span>
                                 </p>
@@ -104,9 +112,9 @@
                                 <label asp-for="EmploymentStatus">Employment Status</label>
                                 <select class="form-control" id="EmploymentStatus">
                                     <option selected>--Choose Employment Status--</option>
-                                    <option>Full-time</option>
-                                    <option>Part-time</option>
-                                    <option>Intern</option>
+                                    <option value="Full-time">Full-time</option>
+                                    <option value="Part-time">Part-time</option>
+                                    <option value="Intern">Intern</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -136,3 +144,6 @@
     </div>
 </div>
 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
