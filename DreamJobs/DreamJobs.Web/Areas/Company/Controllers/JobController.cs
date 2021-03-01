@@ -10,6 +10,7 @@ namespace DreamJobs.Web.Areas.Company.Controllers
     [Area("Company")]
     public class JobController : Controller
     {
+        [HttpGet]
         public IActionResult AddJob()
         {
             var model = new AddJobModel();
@@ -22,10 +23,15 @@ namespace DreamJobs.Web.Areas.Company.Controllers
         {
             if (ModelState.IsValid)
             {
-                await model.AddJobAsync();
-                return RedirectToAction("ViewCompanyProfile");
+                await model.AddJobAsync(User.Identity.Name);
+                return RedirectToAction("ViewJobs");
             }
             return View(model);
+        }
+
+        public IActionResult ViewJobs()
+        {
+            return View();
         }
     }
 }

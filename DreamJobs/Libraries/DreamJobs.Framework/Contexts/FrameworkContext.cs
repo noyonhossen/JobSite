@@ -33,27 +33,11 @@ namespace DreamJobs.Framework.Contexts
                 .HasMany(j => j.Jobs)
                 .WithOne(c => c.Company);
 
-            //many to many relationship
-            modelBuilder.Entity<JobSkill>()
-                .HasKey(js => new { js.JobId, js.SkillId });
-
-            modelBuilder.Entity<JobSkill>()
-                .HasOne(s => s.Job)
-                .WithMany(js => js.JobSkills)
-                .HasForeignKey(j => j.JobId);
-
-            modelBuilder.Entity<JobSkill>()
-                .HasOne(s => s.Skill)
-                .WithMany(js => js.JobSkills)
-                .HasForeignKey(j => j.SkillId);
-
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Company> Companies { get; set; }
         public DbSet<Job> Jobs { get; set; }
-        public DbSet<Skill> Skills { get; set; }
-        public DbSet<JobSkill> JobSkills { get; set; }
 
     }
 }

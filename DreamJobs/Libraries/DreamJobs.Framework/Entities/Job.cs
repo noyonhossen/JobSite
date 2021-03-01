@@ -8,9 +8,8 @@ namespace DreamJobs.Framework.Entities
     public class Job : IEntity<Guid>
     {
         public Guid Id { get; set; }
-        public Guid JobId { get; set; }
+        public Guid CompanyId { get; set; }
         public Company Company { get; set; }
-        public IList<JobSkill> JobSkills { get; set; }
         public string JobTitle { get; set; }
         public string JobContext { get; set; }
         public string JobResponsibilities { get; set; }

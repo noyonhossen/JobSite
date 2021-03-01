@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using DreamJobs.Framework.Entities;
 using DreamJobs.Framework.Services;
+using DreamJobs.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DreamJobs.Web.Areas.Company.Models
 {
-    public class AddJobModel
+    public class AddJobModel : BaseModel
     {
         public string JobTitle { get; set; }
         public string JobContext { get; set; }
@@ -30,21 +31,28 @@ namespace DreamJobs.Web.Areas.Company.Models
         public bool IsOtherApplicable { get; set; }
         public string SkillsRequired { get; set; }
         private IJobService _jobService;
+        private ICompanyService _companyService;
 
         public AddJobModel()
         {
             _jobService = Startup.AutofacContainer.Resolve<IJobService>();
+            _companyService = Startup.AutofacContainer.Resolve<ICompanyService>();
         }
 
-        public AddJobModel(IJobService jobService)
+        public AddJobModel(IJobService jobService,ICompanyService companyService)
         {
             _jobService = jobService;
+            _companyService = companyService;
         }
 
-        internal async Task AddJobAsync()
+        internal async Task AddJobAsync(string userName)
         {
+            var user = await base.GetUserAsync(userName);
+            var companyDetails = await _companyService.GetCompanyDetailsAsync(user.Id);
+
             var job = new Job
             {
+                CompanyId = companyDetails.Id,
                 JobTitle = this.JobTitle,
                 JobContext = this.JobContext,
                 JobResponsibilities = this.JobResponsibilities,

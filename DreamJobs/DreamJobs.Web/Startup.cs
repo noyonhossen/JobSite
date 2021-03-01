@@ -103,7 +103,7 @@ namespace DreamJobs.Web
             {
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
 
                 options.LoginPath = "/Account/Signin";
                 options.AccessDeniedPath = "/Account/AccessDenied";

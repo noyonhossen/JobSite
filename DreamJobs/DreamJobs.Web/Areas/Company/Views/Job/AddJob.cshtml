@@ -25,10 +25,6 @@
                                 <label asp-for="JobContext" class="label">Job Context</label>
                                 <textarea asp-for="JobContext" class="form-control" rows="3" placeholder="Write about JobContext"></textarea>
                             </div>
-                            <div class="form-group pt-2">
-                                <label for="JobResponsibilities">Job Responsibilities</label>
-                                <input type="text" class="form-control" id="JobResponsibilities" aria-describedby="JobResponsibilities" placeholder="Enter Job Responsibilities" required>
-                            </div>
                             <div class="form-group">
                                 <label asp-for="JobResponsibilities" class="label">Job Responsibilities</label>
                                 <textarea asp-for="JobResponsibilities" class="form-control" rows="3" placeholder="Write about Job Responsibilities"></textarea>
@@ -113,10 +109,6 @@
                                     <option>Intern</option>
                                 </select>
                             </div>
-                            <div class="form-group pt-2">
-                                <label for="Age">Age</label>
-                                <input type="text" class="form-control" id="Age" aria-describedby="Age" placeholder="Enter Age" required>
-                            </div>
                             <div class="form-group">
                                 <label asp-for="Age" class="label">Required Age</label>
                                 <input type="text" asp-for="Age" class="form-control" id="Age" placeholder="Enter Required Age">
@@ -128,10 +120,6 @@
                                 <label asp-for="AdditionalRequirements" class="label">Additional Requirements</label>
                                 <textarea asp-for="AdditionalRequirements" class="form-control" rows="3" placeholder="Write about AdditionalRequirements"></textarea>
                             </div>
-                            <div class="form-group pt-2">
-                                <label for="CompensationOtherBenefits">Compensation & Other Benefits</label>
-                                <input type="text" class="form-control" id="CompensationOtherBenefits" aria-describedby="CompensationOtherBenefits" placeholder="Enter Compensation & Other Benefits" required>
-                            </div>
                             <div class="form-group">
                                 <label asp-for="CompensationAndOtherBenefits" class="label">Compensation & Other Benefits</label>
                                 <textarea asp-for="CompensationAndOtherBenefits" class="form-control" rows="3" placeholder="Write about CompensationAndOtherBenefits"></textarea>
@@ -140,7 +128,7 @@
                         </div>
                     </div>
                     <div class="pt-2">
-                        <a href="" type="submit" class="btn btn-primary px-3">Post Job</a>
+                        <button type="submit" class="btn btn-primary px-3">Post Job</button>
                     </div>
                 </form>
             </div>
