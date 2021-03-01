@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using DreamJobs.Framework.Entities;
 using DreamJobs.Framework.Services;
 using System;
 using System.Collections.Generic;
@@ -28,21 +29,44 @@ namespace DreamJobs.Web.Areas.Company.Models
         public bool IsFemaleApplicable { get; set; }
         public bool IsOtherApplicable { get; set; }
         public string SkillsRequired { get; set; }
-        private ICompanyService _companyService;
+        private IJobService _jobService;
 
         public AddJobModel()
         {
-            _companyService = Startup.AutofacContainer.Resolve<ICompanyService>();
+            _jobService = Startup.AutofacContainer.Resolve<IJobService>();
         }
 
-        public AddJobModel(ICompanyService companyService)
+        public AddJobModel(IJobService jobService)
         {
-            _companyService = companyService;
+            _jobService = jobService;
         }
 
-        internal Task AddJobAsync()
+        internal async Task AddJobAsync()
         {
-            throw new NotImplementedException();
+            var job = new Job
+            {
+                JobTitle = this.JobTitle,
+                JobContext = this.JobContext,
+                JobResponsibilities = this.JobResponsibilities,
+                Vacancy = this.Vacancy,
+                Salary = this.Salary,
+                JobLocation = this.JobLocation,
+                WorkPlace = this.WorkPlace,
+                EducationRequired = this.EducationRequired,
+                ExperienceRequirements = this.ExperienceRequirements,
+                DeadLine = this.DeadLine,
+                EmploymentStatus = this.EmploymentStatus,
+                Age = this.Age,
+                AdditionalRequirements = this.AdditionalRequirements,
+                CompensationAndOtherBenefits = this.CompensationAndOtherBenefits,
+                PublishedDate = DateTime.Now,
+                IsMaleApplicable = this.IsMaleApplicable,
+                IsFemaleApplicable = this.IsFemaleApplicable,
+                IsOtherApplicable = this.IsOtherApplicable,
+                SkillsRequired = this.SkillsRequired
+            };
+
+            await _jobService.AddAsync(job);
         }
     }
 }
