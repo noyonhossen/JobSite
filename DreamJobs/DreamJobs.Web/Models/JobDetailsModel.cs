@@ -25,5 +25,9 @@ namespace DreamJobs.Web.Models
         public bool IsOtherApplicable { get; set; }
         public string SkillsRequired { get; set; }
         public string SkillsMatched { get; set; }
+        public string Category { get; set; }
+        public string EmailForApply { get; set; }
+        public string CompanyAddress { get; set; }
+        public string CompanyWebsite { get; set; }
     }
 }

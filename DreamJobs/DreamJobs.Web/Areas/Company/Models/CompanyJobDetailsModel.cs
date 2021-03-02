@@ -48,7 +48,11 @@ namespace DreamJobs.Web.Areas.Company.Models
                 IsMaleApplicable = jobDetails.IsMaleApplicable,
                 IsFemaleApplicable = jobDetails.IsFemaleApplicable,
                 IsOtherApplicable = jobDetails.IsOtherApplicable,
-                SkillsRequired = jobDetails.SkillsRequired
+                SkillsRequired = jobDetails.SkillsRequired,
+                Category = jobDetails.Category,
+                EmailForApply = jobDetails.EmailForApply,
+                CompanyAddress = jobDetails.Company.Address,
+                CompanyWebsite = jobDetails.Company.Website
             };
 
             JobDetails = jobDetail;
