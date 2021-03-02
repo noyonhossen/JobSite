@@ -34,6 +34,10 @@ namespace DreamJobs.Web.Areas.Company.Models
         public bool IsOtherApplicable { get; set; }
         [Required(ErrorMessage = "Please Enter Required Skills")]
         public string SkillsRequired { get; set; }
+        [Required(ErrorMessage = "Please Enter Category")]
+        public string Category { get; set; }
+        [Required(ErrorMessage = "Please Enter Email")]
+        public string EmailForApply { get; set; }
         private IJobService _jobService;
         private ICompanyService _companyService;
 
@@ -79,7 +83,9 @@ namespace DreamJobs.Web.Areas.Company.Models
                 IsMaleApplicable = this.IsMaleApplicable,
                 IsFemaleApplicable = this.IsFemaleApplicable,
                 IsOtherApplicable = this.IsOtherApplicable,
-                SkillsRequired = this.SkillsRequired
+                SkillsRequired = this.SkillsRequired,
+                Category = this.Category,
+                EmailForApply = this.EmailForApply
             };
 
             await _jobService.AddAsync(job);

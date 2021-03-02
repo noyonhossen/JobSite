@@ -74,6 +74,13 @@
                                 </p>
                             </div>
                             <div class="form-group">
+                                <label asp-for="EmailForApply" class="label">Email For Apply</label>
+                                <input type="email" asp-for="EmailForApply" class="form-control" id="EmailForApply" placeholder="emample@gmail.com" required>
+                                <p class="text-danger my-2">
+                                    <span asp-validation-for="EmailForApply"></span>
+                                </p>
+                            </div>
+                            <div class="form-group">
                                 <label for="Gender">Gender: </label>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="IsMaleApplicable" asp-for="IsMaleApplicable">
@@ -107,6 +114,14 @@
                                 <p class="text-danger my-2">
                                     <span asp-validation-for="DeadLine"></span>
                                 </p>
+                            </div>
+                            <div class="form-group pt-2">
+                                <label asp-for="Category">Category</label>
+                                <select class="form-control" asp-for="Category" required>
+                                    <option value="IT & Telecommunication" selected>IT & Telecommunication</option>
+                                    <option value="Engineer/Architects">Engineer/Architects</option>
+                                    <option value="Hospitality/ Travel/ Tourism">Hospitality/ Travel/ Tourism</option>
+                                </select>
                             </div>
                             <div class="form-group pt-2">
                                 <label asp-for="EmploymentStatus">Employment Status</label>
