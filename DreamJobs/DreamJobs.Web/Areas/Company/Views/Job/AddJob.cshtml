@@ -1,0 +1,163 @@
+﻿@model AddJobModel
+
+@{
+    ViewData["Title"] = "Add Job";
+}
+
+<div class="row p-2">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="text-success">Post a Job</h4>
+            </div>
+            <div class="card-body bg-card">
+                <form asp-area="Company" asp-controller="Job" asp-action="AddJob" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label asp-for="JobTitle" class="label">Job Title</label>
+                                <input type="text" asp-for="JobTitle" class="form-control" id="JobTitle" placeholder="Software Engineer" required>
+                                <p class="text-danger my-2">
+                                    <span asp-validation-for="JobTitle"></span>
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="JobContext" class="label">Job Context</label>
+                                <textarea asp-for="JobContext" class="form-control" rows="3" placeholder="Write about JobContext"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="JobResponsibilities" class="label">Job Responsibilities</label>
+                                <textarea asp-for="JobResponsibilities" class="form-control" rows="3" placeholder="Write about Job Responsibilities" required></textarea>
+                                <p class="text-danger my-2">
+                                    <span asp-validation-for="JobResponsibilities"></span>
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Vacancy" class="label">Vacancy</label>
+                                <input type="number" asp-for="Vacancy" class="form-control" id="Vacancy" placeholder="1">
+                                <p class="text-danger my-2">
+                                    <span asp-validation-for="Vacancy"></span>
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Salary" class="label">Enter Salary</label>
+                                <input type="text" asp-for="Salary" class="form-control" id="Salary" placeholder="Negotiable">
+                                <p class="text-danger my-2">
+                                    <span asp-validation-for="Salary"></span>
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="JobLocation" class="label">Enter Job Location</label>
+                                <input type="text" asp-for="JobLocation" class="form-control" id="JobLocation" placeholder="Anywhere in Bangladesh">
+                                <p class="text-danger my-2">
+                                    <span asp-validation-for="JobLocation"></span>
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="WorkPlace" class="label">Enter Work Place</label>
+                                <input type="text" asp-for="WorkPlace" class="form-control" id="WorkPlace" placeholder="Work at office">
+                                <p class="text-danger my-2">
+                                    <span asp-validation-for="WorkPlace"></span>
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SkillsRequired" class="label">Skills Required</label>
+                                <input type="text" asp-for="SkillsRequired" class="form-control" id="SkillsRequired" placeholder="Enter Skills Required" required>
+                                <p>Enter skills seperated by comma(,). Example: C,C#,HTML,JS</p>
+                                <p class="text-danger my-2">
+                                    <span asp-validation-for="SkillsRequired"></span>
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="EmailForApply" class="label">Email For Apply</label>
+                                <input type="email" asp-for="EmailForApply" class="form-control" id="EmailForApply" placeholder="emample@gmail.com" required>
+                                <p class="text-danger my-2">
+                                    <span asp-validation-for="EmailForApply"></span>
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label for="Gender">Gender: </label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="IsMaleApplicable" asp-for="IsMaleApplicable">
+                                    <label class="form-check-label" asp-for="IsMaleApplicable">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="IsFemaleApplicable" asp-for="IsFemaleApplicable">
+                                    <label class="form-check-label" asp-for="IsFemaleApplicable">Female</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="IsOtherApplicable" asp-for="IsOtherApplicable">
+                                    <label class="form-check-label" asp-for="IsOtherApplicable">Other</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label asp-for="EducationRequired" class="label">Required Education</label>
+                                <input type="text" asp-for="EducationRequired" class="form-control" id="EducationRequired" placeholder="Enter Education Required">
+                                <p class="text-danger my-2">
+                                    <span asp-validation-for="EducationRequired"></span>
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ExperienceRequirements" class="label">Experience Requirements</label>
+                                <textarea asp-for="ExperienceRequirements" class="form-control" rows="3" placeholder="Write about Experience Requirements"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DeadLine" class="label">Deadline</label>
+                                <input type="date" asp-for="DeadLine" class="form-control" id="DeadLine" required>
+                                <p class="text-danger my-2">
+                                    <span asp-validation-for="DeadLine"></span>
+                                </p>
+                            </div>
+                            <div class="form-group pt-2">
+                                <label asp-for="Category">Category</label>
+                                <select class="form-control" asp-for="Category" required>
+                                    <option value="IT & Telecommunication" selected>IT & Telecommunication</option>
+                                    <option value="Engineer/Architects">Engineer/Architects</option>
+                                    <option value="Hospitality/ Travel/ Tourism">Hospitality/ Travel/ Tourism</option>
+                                </select>
+                            </div>
+                            <div class="form-group pt-2">
+                                <label asp-for="EmploymentStatus">Employment Status</label>
+                                <select class="form-control" asp-for="EmploymentStatus">
+                                    <option value="Full-time" selected>Full-time</option>
+                                    <option value="Part-time">Part-time</option>
+                                    <option value="Intern">Intern</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Age" class="label">Required Age</label>
+                                <input type="text" asp-for="Age" class="form-control" id="Age" placeholder="Enter Required Age">
+                                <p class="text-danger my-2">
+                                    <span asp-validation-for="Age"></span>
+                                </p>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="AdditionalRequirements" class="label">Additional Requirements</label>
+                                <textarea asp-for="AdditionalRequirements" class="form-control" rows="3" placeholder="Write about AdditionalRequirements"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CompensationAndOtherBenefits" class="label">Compensation & Other Benefits</label>
+                                <textarea asp-for="CompensationAndOtherBenefits" class="form-control" rows="3" placeholder="Write about CompensationAndOtherBenefits"></textarea>
+                            </div>
+                            <input type="hidden" asp-for="PublishedDate" id="PublishedDate" />
+                        </div>
+                    </div>
+                    <div class="pt-2">
+                        <button type="submit" class="btn btn-primary px-3">Post Job</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

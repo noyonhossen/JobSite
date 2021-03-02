@@ -1,0 +1,188 @@
+﻿@model JobDetailsModel
+
+<div class="col-12">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="card-body">
+                            <h4 class="text-success">@Model.JobTitle</h4>
+                            <h5 class="text-dark">@Model.CompanyName</h5>
+                            <div class="my-1">
+                                <h6>Vacancy</h6>
+                                <p class="mx-3">@Model.Vacancy</p>
+                            </div>
+                            <div class="my-1">
+                                <h6>Job Context</h6>
+                                <ul>
+                                    <li>
+                                        <p class="">@Model.JobContext</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="my-1">
+                                <h6>Job Responsibilities</h6>
+                                <ul>
+                                    <li>
+                                        <p class="">@Model.JobResponsibilities</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="my-1">
+                                <h6>Employment Status</h6>
+                                <p class="mx-4">@Model.EmploymentStatus</p>
+                            </div>
+                            <div class="my-1">
+                                <h6>Workplace</h6>
+                                <ul>
+                                    <li>
+                                        <p class="">@Model.WorkPlace</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="my-1">
+                                <h6>Educational Requirements</h6>
+                                <ul>
+                                    <li>
+                                        <p class="">@Model.EducationRequired</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="my-1">
+                                <h6>Experience Requirements</h6>
+                                <ul>
+                                    <li>
+                                        <p class="">@Model.ExperienceRequirements</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="my-1">
+                                <h6>Skills Required</h6>
+                                <ul>
+                                    <li>
+                                        <div class="h6">@Model.SkillsRequired</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="my-1">
+                                <h6>Additional Requirements</h6>
+                                <ul>
+                                    <li>
+                                        <p class="">@Model.AdditionalRequirements</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="my-1">
+                                <h6>Job Location</h6>
+                                <ul>
+                                    <li>
+                                        <p class="">@Model.JobLocation</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="my-1">
+                                <h6>Salary</h6>
+                                <ul>
+                                    <li>
+                                        <p class="">@Model.Salary</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="my-1">
+                                <h6>Compensation & Other Benefits</h6>
+                                <ul>
+                                    <li>
+                                        <p class="">@Model.CompensationAndOtherBenefits</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="">
+                            <h6 class="m-2">Category: @Model.Category</h6>
+                        </div>
+                        <div class="card m-2">
+                            <h5 class="card-header bg-dark text-white">Job Summary</h5>
+                            <div class="card-body bg-card">
+                                <h6 class="">
+                                    Published on: @Model.PublishedDate.ToString("dddd, dd MMMM yyyy")
+                                </h6>
+                                <h6 class="">
+                                    Vacancy:  @Model.Vacancy
+                                </h6>
+                                <h6 class="">
+                                    Employment Status: @Model.EmploymentStatus
+                                </h6>
+                                <h6 class="">
+                                    Experience: @Model.ExperienceRequirements
+                                </h6>
+                                <h6 class="">
+                                    Gender:
+                                    @if (Model.IsMaleApplicable == true)
+                                    {
+                                        <span>Male </span>
+                                    }
+
+                                    @if (Model.IsFemaleApplicable)
+                                    {
+                                        <span> Females </span>
+                                    }
+
+                                    @if (Model.IsOtherApplicable)
+                                    {
+                                        <span> Others </span>
+                                    }
+
+                                </h6>
+                                <h6 class="">
+                                    Age: @Model.Age
+                                </h6>
+                                <h6 class="">
+                                    Job Location: @Model.JobLocation
+                                </h6>
+                                <h6 class="">
+                                    Skills: @Model.SkillsRequired
+                                </h6>
+                                <h6 class="">
+                                    Matching Skills: C#, HTML, CSS
+                                </h6>
+                                <h6 class="">
+                                    Application Deadline: @Model.DeadLine.ToString("dddd, dd MMMM yyyy")
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-5">
+                    <div class="col-12 mb-5">
+                        <div class="text-center">
+                            <h5>Apply Procedures</h5>
+                            <h5>Email</h5>
+                            <p>
+                                Send your CV to <span class="text-success">@Model.EmailForApply</span>
+                            </p>
+                            <h6>Application Deadline : @Model.DeadLine.ToString("dddd, dd MMMM yyyy")</h6>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                        <div class="my-1">
+                            <h6>Published On</h6>
+                            <p class="">@Model.PublishedDate.ToString("dddd, dd MMMM yyyy")</p>
+                        </div>
+                        <div class="my-1">
+                            <h6>Company Information</h6>
+                            <div class="">
+                                <p class="">@Model.CompanyName</p>
+                                <p class="">Address : @Model.CompanyAddress</p>
+                                <p class="">Web : @Model.CompanyWebsite</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

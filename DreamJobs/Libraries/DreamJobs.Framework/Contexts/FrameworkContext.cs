@@ -1,8 +1,5 @@
 ﻿using DreamJobs.Framework.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DreamJobs.Framework.Contexts
 {
@@ -29,7 +26,18 @@ namespace DreamJobs.Framework.Contexts
             base.OnConfiguring(dbContextOptionsBuilder);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //one to many relationship
+            modelBuilder.Entity<Company>()
+                .HasMany(j => j.Jobs)
+                .WithOne(c => c.Company);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public DbSet<Company> Companies { get; set; }
+        public DbSet<Job> Jobs { get; set; }
 
     }
 }

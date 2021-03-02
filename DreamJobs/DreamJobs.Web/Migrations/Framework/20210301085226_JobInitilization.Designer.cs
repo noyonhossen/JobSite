@@ -4,14 +4,16 @@ using DreamJobs.Framework.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DreamJobs.Web.Migrations.Framework
 {
     [DbContext(typeof(FrameworkContext))]
-    partial class FrameworkContextModelSnapshot : ModelSnapshot
+    [Migration("20210301085226_JobInitilization")]
+    partial class JobInitilization
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,10 +62,7 @@ namespace DreamJobs.Web.Migrations.Framework
                     b.Property<string>("Age")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("CompanyId")
+                    b.Property<Guid?>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CompensationAndOtherBenefits")
@@ -73,9 +72,6 @@ namespace DreamJobs.Web.Migrations.Framework
                         .HasColumnType("datetime2");
 
                     b.Property<string>("EducationRequired")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmailForApply")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EmploymentStatus")
@@ -95,6 +91,9 @@ namespace DreamJobs.Web.Migrations.Framework
 
                     b.Property<string>("JobContext")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("JobId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("JobLocation")
                         .HasColumnType("nvarchar(max)");
@@ -127,11 +126,56 @@ namespace DreamJobs.Web.Migrations.Framework
                     b.ToTable("Jobs");
                 });
 
+            modelBuilder.Entity("DreamJobs.Framework.Entities.JobSkill", b =>
+                {
+                    b.Property<Guid>("JobId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SkillId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("JobId", "SkillId");
+
+                    b.HasIndex("SkillId");
+
+                    b.ToTable("JobSkills");
+                });
+
+            modelBuilder.Entity("DreamJobs.Framework.Entities.Skill", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Skills");
+                });
+
             modelBuilder.Entity("DreamJobs.Framework.Entities.Job", b =>
                 {
                     b.HasOne("DreamJobs.Framework.Entities.Company", "Company")
                         .WithMany("Jobs")
-                        .HasForeignKey("CompanyId")
+                        .HasForeignKey("CompanyId");
+                });
+
+            modelBuilder.Entity("DreamJobs.Framework.Entities.JobSkill", b =>
+                {
+                    b.HasOne("DreamJobs.Framework.Entities.Job", "Job")
+                        .WithMany("JobSkills")
+                        .HasForeignKey("JobId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DreamJobs.Framework.Entities.Skill", "Skill")
+                        .WithMany("JobSkills")
+                        .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -32,6 +32,25 @@
                 </a>
             </li>
         </ul>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-header">Company Jobs</li>
+            <li class="nav-item">
+                <a asp-area="Company" asp-controller="Job" asp-action="AddJob" class="nav-link">
+                    <i class="nav-icon far fa-user"></i>
+                    <p>
+                        Post a Job
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Company" asp-controller="Job" asp-action="ViewJobs" class="nav-link">
+                    <i class="nav-icon far fa-user"></i>
+                    <p>
+                        View Posted Jobs
+                    </p>
+                </a>
+            </li>
+        </ul>
     </nav>
     <!-- /.sidebar-menu -->
 </div>

@@ -14,5 +14,6 @@ namespace DreamJobs.Framework.Entities
         public string Category { get; set; }
         public string Address { get; set; }
         public string Website { get; set; }
+        public IList<Job> Jobs { get; set; }
     }
 }
