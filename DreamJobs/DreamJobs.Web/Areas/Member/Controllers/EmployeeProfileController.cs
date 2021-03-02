@@ -46,7 +46,7 @@ namespace DreamJobs.Web.Areas.Member.Controllers
             if (ModelState.IsValid)
             {
                 await model.EditProfile(User.Identity.Name);
-                return RedirectToAction("ViewCompanyProfile");
+                return RedirectToAction("ViewEmployeeProfile");
             }
             return View(model);
         }
