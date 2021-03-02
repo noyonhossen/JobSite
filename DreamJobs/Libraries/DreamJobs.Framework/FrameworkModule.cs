@@ -43,6 +43,15 @@ namespace DreamJobs.Framework
             builder.RegisterType<JobService>().As<IJobService>()
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<EmployeeRepository>().As<IEmployeeRepository>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<EmployeeUnitOfWork>().As<IEmployeeUnitOfWork>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<EmployeeService>().As<IEmployeeService>()
+                .InstancePerLifetimeScope();
+
             base.Load(builder);
         }
     }

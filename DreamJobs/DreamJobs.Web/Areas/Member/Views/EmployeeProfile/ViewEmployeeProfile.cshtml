@@ -1,0 +1,92 @@
+﻿@model ViewEmployeeProfileModel
+
+@{
+    ViewData["Title"] = "View Profile";
+}
+
+<div class="row p-1">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="text-success">
+                    Profile Details
+                    <a asp-area="Member" asp-controller="EmployeeProfile" asp-action="EditEmployeeProfile" class="btn btn-primary float-right"><i class="nav-icon far fa-edit"></i> Edit Profile</a>
+                </h4>
+            </div>
+            <div class="card-body bg-card">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="">
+                            <h4>Full Name</h4>
+                            <p>@Model.FullName</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="">
+                            <h4>Father's Name</h4>
+                            <p>@Model.FatherName</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="">
+                            <h4>Mother's Name</h4>
+                            <p>@Model.MotherName</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="">
+                            <h4>Date Of Birth</h4>
+                            <p>@Model.DateOfBirth.ToString("dd MMMM yyyy")</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="">
+                            <h4>Gender</h4>
+                            <p>@Model.Gender</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="">
+                            <h4>Mobile No</h4>
+                            <p>@Model.MobileNo</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="">
+                            <h4>Present Address</h4>
+                            <p>@Model.PresentAddress</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="">
+                            <h4>Permanent Address</h4>
+                            <p>@Model.PermanentAddress</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="">
+                            <h4>Skills</h4>
+                            <p>@Model.Skills</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
