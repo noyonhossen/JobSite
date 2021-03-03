@@ -11,6 +11,7 @@ namespace DreamJobs.Framework.Services
         //Task UpdateAsync(Job job);
         Task AddAsync(Job job);
         Task<IList<Job>> GetCompanyAllJobAsync(Company companyInfo);
+        Task<IList<Job>> GetJobsByCategoryAsync(string category);
         Task<Job> GetJobDetailsAsync(Guid jobId);
     }
 }

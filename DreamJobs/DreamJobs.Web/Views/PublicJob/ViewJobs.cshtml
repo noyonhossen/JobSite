@@ -1,0 +1,29 @@
+﻿@model PublicJobListModel
+
+@{
+    ViewData["Title"] = "ViewJobs";
+}
+
+<div class="container">
+    @if (Model.JobCardShortLists == null)
+    {
+        <h1>No jobs found.</h1>
+    }
+    else
+    {
+        <h1 class="text-center">All Jobs</h1>
+        @foreach (var singleCard in Model.JobCardShortLists)
+        {
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 m-1">
+                    <partial name="_JobCardShortList" model="@singleCard" />
+                </div>
+                <div class="col-2"></div>
+            </div>
+         }
+    }
+</div>
+
+
+

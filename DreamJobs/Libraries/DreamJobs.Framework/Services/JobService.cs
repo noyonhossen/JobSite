@@ -28,6 +28,12 @@ namespace DreamJobs.Framework.Services
             var companyJobList = await _jobUnitOfWork.JobRepository.GetAsync(c => c.CompanyId == companyInfo.Id);
             return companyJobList;
         }
+        
+        public async Task<IList<Job>> GetJobsByCategoryAsync(string category)
+        {
+            var jobs = await _jobUnitOfWork.JobRepository.GetAsync(c => c.Category == category);
+            return jobs;
+        }
 
         public async Task<Job> GetJobDetailsAsync(Guid jobId)
         {
