@@ -69,3 +69,35 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+/*Custom Css*/
+.my-footer {
+    background-color: #0D426A;
+    padding-top: 90px;
+    padding-bottom: 90px;
+}
+
+.list-unstyled li a {
+    text-decoration: none;
+}
+
+.social-link ul li {
+    display: inline;
+    padding: 10px;
+}
+
+.content-2 {
+    background-image: url(../img/laptop.jpg);
+    background-color: #2DAAD6;
+    padding-top: 70px;
+    padding-bottom: 90px;
+}
+
+.my-statictic {
+    background: linear-gradient(rgba(110, 170, 211, 0.8), rgba(110, 170, 211, 0.8)), url(../img/working_3.jpg);
+    padding: 50px;
+}
+
+.find-job {
+    color: #FFDEAD;
+}
