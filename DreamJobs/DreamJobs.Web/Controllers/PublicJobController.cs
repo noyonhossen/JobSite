@@ -15,5 +15,12 @@ namespace DreamJobs.Web.Controllers
             await model.GetJobsByCategoryAsync(category);
             return View(model);
         }
+
+        public async Task<IActionResult> ViewJobDetails(Guid jobId)
+        {
+            var model = new PublicJobDetailsModel();
+            await model.GetJobDetailsAsync(jobId);
+            return View(model);
+        }
     }
 }

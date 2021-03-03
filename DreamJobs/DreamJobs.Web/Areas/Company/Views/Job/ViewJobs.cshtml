@@ -13,7 +13,12 @@ else
     <h1>All Posted Jobs</h1>
     @foreach (var singleCard in Model.JobCardShortLists)
     {
-        <partial name="_JobCardShortList" model="@singleCard" />
+        <div class="card">
+            <div class="card-header">
+                <a asp-area="Company" asp-controller="Job" asp-action="ViewJobDetails" asp-route-jobId="@singleCard.JobId"><h4 class="text-success">@singleCard.JobTitle</h4></a>
+            </div>
+            <partial name="_JobCardShortList" model="@singleCard" />
+        </div>
     }
 }
 

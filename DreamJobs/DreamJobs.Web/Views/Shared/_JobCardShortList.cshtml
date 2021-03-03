@@ -1,51 +1,46 @@
 ﻿@model JobCardShortListModel
 
-<div class="card">
-    <div class="card-header">
-        <a asp-area="Company" asp-controller="Job" asp-action="ViewJobDetails" asp-route-jobId="@Model.JobId"><h4 class="text-success">@Model.JobTitle</h4></a>
+<div class="card-body bg-card">
+    <div class="row">
+        <h5 class="card-title text-dark">
+            @Model.CompanyName
+        </h5>
     </div>
-    <div class="card-body bg-card">
-        <div class="row">
-            <h5 class="card-title text-dark">
-                @Model.CompanyName
-            </h5>
-        </div>
-        <div class="row">
-            <div class="col-9">
-                <h6 class="card-text text-secondary">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>@Model.JobLocation</span>
-                </h6>
-                <h6 class="card-text text-secondary">
-                    <i class="fas fa-user-graduate"></i>
-                    <span>@Model.EducationRequired</span>
-                </h6>
-                <h6 class="card-text text-secondary">
-                    <i class="fas fa-medal"></i>
-                    Skills: <span>@Model.SkillsRequired</span>
-                </h6>
-            </div>
-            <div class="col-3">
-                <h6 class="card-text text-secondary">
-                    <i class="fas fa-hands"></i>
-                    Vacancy: <span>@Model.Vacancy</span>
-                </h6>
-                <h6 class="card-text text-secondary">
-                    <i class="fas fa-briefcase"></i>
-                    <span>@Model.ExperienceRequirements</span>
-                </h6>
-                <h6 class="card-text text-secondary">
-                    <i class="fas fa-calendar-alt"></i>
-                    Deadline: <span>@Model.DeadLine.ToString("dddd, dd MMMM yyyy")</span>
-                </h6>
-            </div>
-        </div>
-        @if (Model.SkillsMatched != null)
-        {
+    <div class="row">
+        <div class="col-9">
             <h6 class="card-text text-secondary">
-                <i class="fas fa-handshake"></i>
-                Matching Skills: <span>@Model.SkillsMatched</span>
+                <i class="fas fa-map-marker-alt"></i>
+                <span>@Model.JobLocation</span>
             </h6>
-        }
+            <h6 class="card-text text-secondary">
+                <i class="fas fa-user-graduate"></i>
+                <span>@Model.EducationRequired</span>
+            </h6>
+            <h6 class="card-text text-secondary">
+                <i class="fas fa-medal"></i>
+                Skills: <span>@Model.SkillsRequired</span>
+            </h6>
+        </div>
+        <div class="col-3">
+            <h6 class="card-text text-secondary">
+                <i class="fas fa-hands"></i>
+                Vacancy: <span>@Model.Vacancy</span>
+            </h6>
+            <h6 class="card-text text-secondary">
+                <i class="fas fa-briefcase"></i>
+                <span>@Model.ExperienceRequirements</span>
+            </h6>
+            <h6 class="card-text text-secondary">
+                <i class="fas fa-calendar-alt"></i>
+                Deadline: <span>@Model.DeadLine.ToString("dddd, dd MMMM yyyy")</span>
+            </h6>
+        </div>
     </div>
+    @if (Model.SkillsMatched != null)
+    {
+        <h6 class="card-text text-secondary">
+            <i class="fas fa-handshake"></i>
+            Matching Skills: <span>@Model.SkillsMatched</span>
+        </h6>
+    }
 </div>
