@@ -38,6 +38,7 @@ namespace DreamJobs.Framework.Contexts
 
         public DbSet<Company> Companies { get; set; }
         public DbSet<Job> Jobs { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Employee> Employees { get; set; }
 
     }

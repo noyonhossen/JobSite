@@ -1,4 +1,6 @@
-﻿@{
+﻿@model CategoryModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,6 +8,7 @@
 {
     <link href="~/css/public.css" rel="stylesheet" />
 }
+
 <div class="row">
     <div class="col-12">
         <div class="my-statictic">
@@ -76,46 +79,18 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-4">
-                                        <a href="#">
-                                            <ul class="list-group">
-                                                <li class="list-group-item d-flex justify-content-between align-items-center m-1">
-                                                    Hospitality/ Travel/ Tourism
-                                                    <span class="badge bg-success text-white rounded-pill">141</span>
-                                                </li>
-                                            </ul>
-                                        </a>
-                                    </div>
-                                    <div class="col-4">
-                                        <a asp-controller="PublicJob" asp-action="ViewJobs" asp-route-category="IT & Telecommunication">
-                                            <ul class="list-group">
-                                                <li class="list-group-item d-flex justify-content-between align-items-center m-1">
-                                                    IT/Telecommunication
-                                                    <span class="badge bg-success text-white rounded-pill">14</span>
-                                                </li>
-                                            </ul>
-                                        </a>
-                                    </div>
-                                    <div class="col-4">
-                                        <a href="#">
-                                            <ul class="list-group">
-                                                <li class="list-group-item d-flex justify-content-between align-items-center m-1">
-                                                    NGO/Development
-                                                    <span class="badge bg-success text-white rounded-pill">210</span>
-                                                </li>
-                                            </ul>
-                                        </a>
-                                    </div>
-                                    <div class="col-4">
-                                        <a href="#">
-                                            <ul class="list-group">
-                                                <li class="list-group-item d-flex justify-content-between align-items-center m-1">
-                                                    Electrician/ Construction/ Repair
-                                                    <span class="badge bg-success text-white rounded-pill">104</span>
-                                                </li>
-                                            </ul>
-                                        </a>
-                                    </div>
+                                    @foreach (var category in Model.Categories)
+                                    {
+                                        <div class="col-4">
+                                            <a asp-controller="PublicJob" asp-action="ViewJobs" asp-route-category=@category.Name>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item d-flex justify-content-between align-items-center m-1">
+                                                        @category.Name
+                                                    </li>
+                                                </ul>
+                                            </a>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
