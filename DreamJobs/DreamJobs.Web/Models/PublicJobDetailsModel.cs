@@ -28,7 +28,7 @@ namespace DreamJobs.Web.Models
 
             var jobDetail = new JobDetailsModel
             {
-                //CompanyName = jobDetails.Company.Name,
+                CompanyName = jobDetails.Company.Name,
                 JobTitle = jobDetails.JobTitle,
                 JobContext = jobDetails.JobContext,
                 JobResponsibilities = jobDetails.JobResponsibilities,
@@ -50,8 +50,8 @@ namespace DreamJobs.Web.Models
                 SkillsRequired = jobDetails.SkillsRequired,
                 Category = jobDetails.Category,
                 EmailForApply = jobDetails.EmailForApply,
-                //CompanyAddress = jobDetails.Company.Address,
-                //CompanyWebsite = jobDetails.Company.Website
+                CompanyAddress = jobDetails.Company.Address,
+                CompanyWebsite = jobDetails.Company.Website
             };
 
             JobDetails = jobDetail;

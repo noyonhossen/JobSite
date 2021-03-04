@@ -1,5 +1,6 @@
 ﻿using DreamJobs.Framework.Entities;
 using DreamJobs.Framework.UnitOfWorks;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,13 +32,21 @@ namespace DreamJobs.Framework.Services
         
         public async Task<IList<Job>> GetJobsByCategoryAsync(string category)
         {
-            var jobs = await _jobUnitOfWork.JobRepository.GetAsync(c => c.Category == category);
+            var jobs = await _jobUnitOfWork.JobRepository.GetAsync(
+                                                            c => c.Category == category,
+                                                            null,
+                                                            x => x.Include(i => i.Company),
+                                                            false);
             return jobs;
         }
 
         public async Task<Job> GetJobDetailsAsync(Guid jobId)
         {
-            var companyJobDetails = await _jobUnitOfWork.JobRepository.GetAsync(c => c.Id == jobId);
+            var companyJobDetails = await _jobUnitOfWork.JobRepository.GetAsync(
+                                                                        c => c.Id == jobId,
+                                                                        null,
+                                                                        x => x.Include(i => i.Company),
+                                                                        false);
             return companyJobDetails.FirstOrDefault();
         }
     }
