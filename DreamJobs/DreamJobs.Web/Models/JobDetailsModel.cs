@@ -29,5 +29,6 @@ namespace DreamJobs.Web.Models
         public string EmailForApply { get; set; }
         public string CompanyAddress { get; set; }
         public string CompanyWebsite { get; set; }
+        public int TotalSkillsMatched { get; set; }
     }
 }

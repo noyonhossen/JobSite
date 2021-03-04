@@ -19,7 +19,7 @@ namespace DreamJobs.Web.Controllers
         public async Task<IActionResult> ViewJobDetails(Guid jobId)
         {
             var model = new PublicJobDetailsModel();
-            await model.GetJobDetailsAsync(jobId);
+            await model.GetJobDetailsAsync(jobId, User.Identity.Name);
             return View(model);
         }
     }

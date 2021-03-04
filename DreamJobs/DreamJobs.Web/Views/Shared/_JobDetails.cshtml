@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-7">
                         <div class="card-body">
                             <h4 class="text-success">@Model.JobTitle</h4>
                             <h5 class="text-dark">@Model.CompanyName</h5>
@@ -99,7 +99,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-5">
                         <div class="">
                             <h6 class="m-2">Category: @Model.Category</h6>
                         </div>
@@ -107,7 +107,7 @@
                             <h5 class="card-header bg-dark text-white">Job Summary</h5>
                             <div class="card-body bg-card">
                                 <h6 class="">
-                                    Published on: @Model.PublishedDate.ToString("dddd, dd MMMM yyyy")
+                                    Published on: @Model.PublishedDate.ToString("dd MMMM yyyy")
                                 </h6>
                                 <h6 class="">
                                     Vacancy:  @Model.Vacancy
@@ -145,11 +145,24 @@
                                 <h6 class="">
                                     Skills: @Model.SkillsRequired
                                 </h6>
+                                @if (Model.TotalSkillsMatched != 0)
+                                {
+                                    <h6 class="">
+                                        <i class="fas fa-check-circle text-primary"></i>
+                                        You have @Model.TotalSkillsMatched matching
+                                        @if (Model.TotalSkillsMatched == 1)
+                                        {
+                                            <span>skill</span>
+                                        }
+                                        else
+                                        {
+                                            <span>skills</span>
+                                        }:
+                                        <span>@Model.SkillsMatched</span>
+                                    </h6>
+                                }
                                 <h6 class="">
-                                    Matching Skills: C#, HTML, CSS
-                                </h6>
-                                <h6 class="">
-                                    Application Deadline: @Model.DeadLine.ToString("dddd, dd MMMM yyyy")
+                                    Application Deadline: @Model.DeadLine.ToString("dd MMMM yyyy")
                                 </h6>
                             </div>
                         </div>

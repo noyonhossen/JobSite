@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using DreamJobs.Framework.Entities;
 using DreamJobs.Framework.Services;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DreamJobs.Web.Models
 {
-    public class PublicJobDetailsModel
+    public class PublicJobDetailsModel : BaseModel
     {
         public JobDetailsModel JobDetails { get; set; }
         private IJobService _jobService;
@@ -22,9 +23,15 @@ namespace DreamJobs.Web.Models
             _jobService = jobService;
         }
 
-        internal async Task GetJobDetailsAsync(Guid jobId)
+        internal async Task GetJobDetailsAsync(Guid jobId, string userName)
         {
+            var employee = new Employee();
             var jobDetails = await _jobService.GetJobDetailsAsync(jobId);
+
+            if (userName != null)
+            {
+                employee = await base.GetEmployeeAsync(userName);
+            }
 
             var jobDetail = new JobDetailsModel
             {
@@ -51,7 +58,9 @@ namespace DreamJobs.Web.Models
                 Category = jobDetails.Category,
                 EmailForApply = jobDetails.EmailForApply,
                 CompanyAddress = jobDetails.Company.Address,
-                CompanyWebsite = jobDetails.Company.Website
+                CompanyWebsite = jobDetails.Company.Website,
+                SkillsMatched = userName == null ? "" : (base.GetUserMatchedSkillsAsync(jobDetails.SkillsRequired, employee.Skills)).matchedSkills,
+                TotalSkillsMatched = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(jobDetails.SkillsRequired, employee.Skills)).totalSkills
             };
 
             JobDetails = jobDetail;
