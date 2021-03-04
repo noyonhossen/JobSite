@@ -2,7 +2,138 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section Styles
+{
+    <link href="~/css/public.css" rel="stylesheet" />
+}
+<div class="row">
+    <div class="col-12">
+        <div class="my-statictic">
+            <div class="row">
+                <div class="col">
+
+                </div>
+                <div class="col-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="p-3">
+                                <i class="fas fa-chart-line fa-3x p-3 rounded-circle text-white" style="border: 3px solid blue;"></i>
+                            </div>
+                        </div>
+                        <div class="col-8 mt-3">
+                            <h3 class="text-white">Live Jobs</h3>
+                            <h3 class="text-white">3200</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="p-3">
+                                <i class="fas fa-building fa-3x p-3 rounded-circle text-white" style="border: 3px solid blue;"></i>
+                            </div>
+                        </div>
+                        <div class="col-8 mt-3">
+                            <h3 class="text-white">Companies</h3>
+                            <h3 class="text-white">1200</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="p-3">
+                                <i class="fas fa-user-md fa-3x p-3 rounded-circle text-white" style="border: 3px solid blue;"></i>
+                            </div>
+                        </div>
+                        <div class="col-8 mt-3">
+                            <h3 class="text-white">New Jobs</h3>
+                            <h3 class="text-white">200</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center pt-3 find-job">Find the right job</h1>
+                    <div class="text-center">
+                        <a asp-controller="" asp-action="" class="btn btn-primary mt-3 px-5 py-3"><i class="fas fa-search"></i> Search</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="m-5">
+            <div class="row p-2 text-center">
+                <div class="col-12 text-center">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="text-primary">Browse Category</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <a href="#">
+                                            <ul class="list-group">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center m-1">
+                                                    Hospitality/ Travel/ Tourism
+                                                    <span class="badge bg-success text-white rounded-pill">141</span>
+                                                </li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a asp-controller="PublicJob" asp-action="ViewJobs" asp-route-category="IT & Telecommunication">
+                                            <ul class="list-group">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center m-1">
+                                                    IT/Telecommunication
+                                                    <span class="badge bg-success text-white rounded-pill">14</span>
+                                                </li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="#">
+                                            <ul class="list-group">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center m-1">
+                                                    NGO/Development
+                                                    <span class="badge bg-success text-white rounded-pill">210</span>
+                                                </li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                    <div class="col-4">
+                                        <a href="#">
+                                            <ul class="list-group">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center m-1">
+                                                    Electrician/ Construction/ Repair
+                                                    <span class="badge bg-success text-white rounded-pill">104</span>
+                                                </li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <!-- content-2 -->
+        <div class="content-2">
+            <div class="container">
+                <h2 class="text-center pb-5 display-4 text-white">Develop Yourself for better career</h2>
+                <h4 class="text-center pb-5 text-white ">
+                    Never miss a single opportunity. Search and apply on the go
+                    and get the perfect job for you.
+                </h4>
+            </div>
+        </div>
+    </div>
 </div>
