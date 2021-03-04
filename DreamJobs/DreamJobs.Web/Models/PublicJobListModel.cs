@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using DreamJobs.Framework.Entities;
 using DreamJobs.Framework.Services;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,16 @@ namespace DreamJobs.Web.Models
             _jobService = jobService;
         }
 
-        internal async Task GetJobsByCategoryAsync(string category)
+        internal async Task GetJobsByCategoryAsync(string category, string userName)
         {
+            var employee = new Employee();
             var jobCardShortLists = new List<JobCardShortListModel>();
             var jobs = await _jobService.GetJobsByCategoryAsync(category);
+
+            if (userName != null)
+            {
+                employee = await base.GetEmployeeAsync(userName);
+            }
 
             foreach (var job in jobs)
             {
@@ -39,7 +46,9 @@ namespace DreamJobs.Web.Models
                     EducationRequired = job.EducationRequired,
                     ExperienceRequirements = job.ExperienceRequirements,
                     DeadLine = job.DeadLine,
-                    SkillsRequired = job.SkillsRequired
+                    SkillsRequired = job.SkillsRequired,
+                    SkillsMatched = userName == null ? "" : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).matchedSkills,
+                    TotalSkillsMatched = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).totalSkills
                 };
 
                 jobCardShortLists.Add(jobCardShortList);

@@ -17,5 +17,6 @@ namespace DreamJobs.Web.Models
         public DateTime DeadLine { get; set; }
         public string SkillsRequired { get; set; }
         public string SkillsMatched { get; set; }
+        public int TotalSkillsMatched { get; set; }
     }
 }
