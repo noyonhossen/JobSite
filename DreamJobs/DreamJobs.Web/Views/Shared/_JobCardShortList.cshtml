@@ -7,7 +7,7 @@
         </h5>
     </div>
     <div class="row">
-        <div class="col-9">
+        <div class="col-7">
             <h6 class="card-text text-secondary">
                 <i class="fas fa-map-marker-alt"></i>
                 <span>@Model.JobLocation</span>
@@ -21,7 +21,7 @@
                 Skills: <span>@Model.SkillsRequired</span>
             </h6>
         </div>
-        <div class="col-3">
+        <div class="col-5">
             <h6 class="card-text text-secondary">
                 <i class="fas fa-hands"></i>
                 Vacancy: <span>@Model.Vacancy</span>
@@ -32,15 +32,24 @@
             </h6>
             <h6 class="card-text text-secondary">
                 <i class="fas fa-calendar-alt"></i>
-                Deadline: <span>@Model.DeadLine.ToString("dddd, dd MMMM yyyy")</span>
+                Deadline: <span>@Model.DeadLine.ToString("dd MMMM yyyy")</span>
             </h6>
         </div>
     </div>
-    @if (Model.SkillsMatched != null)
+    @if (Model.TotalSkillsMatched != 0)
     {
-        <h6 class="card-text text-secondary">
-            <i class="fas fa-handshake"></i>
-            Matching Skills: <span>@Model.SkillsMatched</span>
+        <h6 class="card-text text-secondary mt-2">
+            <i class="fas fa-check-circle text-primary"></i>
+            You have @Model.TotalSkillsMatched matching
+            @if (Model.TotalSkillsMatched == 1)
+            {
+                <span>skill</span>
+            }
+            else
+            {
+                <span>skills</span>
+            }: 
+            <span>@Model.SkillsMatched</span>
         </h6>
     }
 </div>
