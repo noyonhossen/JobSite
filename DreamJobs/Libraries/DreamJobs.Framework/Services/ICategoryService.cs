@@ -8,5 +8,8 @@ namespace DreamJobs.Framework.Services
     public interface ICategoryService
     {
         Task<IList<Category>> GetAllCategoryAsync();
+        Task<Category> GetCategoryByIdAsync(Guid id);
+        Task UpdateAsync(Category category);
+        Task AddAsync(Category category);
     }
 }
