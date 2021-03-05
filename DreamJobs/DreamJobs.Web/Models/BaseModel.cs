@@ -43,16 +43,19 @@ namespace DreamJobs.Web.Models
             return await _employeeService.GetEmployeeDetailsAsync(user.Id);
         }
 
-        public (string matchedSkills,int totalSkills) GetUserMatchedSkillsAsync(string skillsRequired,string skillsOfEmployee)
+        public (string matchedSkills,int totalSkills,int totalSkillsRequired) GetUserMatchedSkillsAsync(string skillsRequired,string skillsOfEmployee)
         {
             var matchedSkills = new StringBuilder();
             var totalMatchedSkills = 0;
+            var totalSkillsRequired = 0;
 
             string[] requiredSkills = skillsRequired.Split(',');
 
             foreach (var requiredSkill in requiredSkills)
             {
                 var requiredSkillTrimed = requiredSkill.Trim();
+                totalSkillsRequired++;
+
                 if (skillsOfEmployee.ToLower().Contains(requiredSkillTrimed.ToLower()))
                 {
                     matchedSkills.Append(requiredSkill + ",");
@@ -60,7 +63,7 @@ namespace DreamJobs.Web.Models
                 }
             }
 
-            return (matchedSkills.ToString().TrimEnd(','), totalMatchedSkills);
+            return (matchedSkills.ToString().TrimEnd(','), totalMatchedSkills, totalSkillsRequired);
         }
     }
 }

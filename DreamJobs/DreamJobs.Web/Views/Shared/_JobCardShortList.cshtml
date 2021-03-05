@@ -40,7 +40,7 @@
     {
         <h6 class="card-text text-secondary mt-2">
             <i class="fas fa-check-circle text-primary"></i>
-            You have @Model.TotalSkillsMatched matching
+            Your Matching
             @if (Model.TotalSkillsMatched == 1)
             {
                 <span>skill</span>
@@ -48,7 +48,8 @@
             else
             {
                 <span>skills</span>
-            }: 
+            }
+            @Model.TotalSkillsMatched out of @Model.TotalSkillsRequired :
             <span>@Model.SkillsMatched</span>
         </h6>
     }

@@ -30,5 +30,6 @@ namespace DreamJobs.Web.Models
         public string CompanyAddress { get; set; }
         public string CompanyWebsite { get; set; }
         public int TotalSkillsMatched { get; set; }
+        public int TotalSkillsRequired { get; set; }
     }
 }
