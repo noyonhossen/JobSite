@@ -38,5 +38,10 @@ namespace DreamJobs.Framework.Services
             await _companyUnitOfWork.CompanyRepository.AddAsync(company);
             await _companyUnitOfWork.SaveAsync();
         }
+
+        public async Task<int> GetTotalCompanyAsync()
+        {
+            return await _companyUnitOfWork.CompanyRepository.GetCountAsync();
+        }
     }
 }

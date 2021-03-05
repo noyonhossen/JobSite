@@ -22,6 +22,9 @@ namespace DreamJobs.Web.Controllers
         {
             var model = new CategoryModel();
             await model.GetAllCategoryAsync();
+            await model.GetTotalJobsPostedAsync();
+            await model.GetTotalJobsPostedTodayAsync();
+            await model.GetTotalCompanyAsync();
             return View(model);
         }
 
