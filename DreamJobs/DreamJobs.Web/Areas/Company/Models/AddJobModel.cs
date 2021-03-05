@@ -38,6 +38,9 @@ namespace DreamJobs.Web.Areas.Company.Models
         public string Category { get; set; }
         [Required(ErrorMessage = "Please Enter Email")]
         public string EmailForApply { get; set; }
+        public IList<Category> Categories { get; set; }
+
+        private ICategoryService _categoryService;
         private IJobService _jobService;
         private ICompanyService _companyService;
 
@@ -45,16 +48,25 @@ namespace DreamJobs.Web.Areas.Company.Models
         {
             _jobService = Startup.AutofacContainer.Resolve<IJobService>();
             _companyService = Startup.AutofacContainer.Resolve<ICompanyService>();
+            _categoryService = Startup.AutofacContainer.Resolve<ICategoryService>();
             var today = DateTime.Today;
             DeadLine = today.AddDays(1);
         }
 
-        public AddJobModel(IJobService jobService,ICompanyService companyService)
+        public AddJobModel(IJobService jobService,
+            ICompanyService companyService,
+            ICategoryService categoryService)
         {
             _jobService = jobService;
             _companyService = companyService;
+            _categoryService = categoryService;
             var today = DateTime.Today;
             DeadLine = today.AddDays(1);
+        }
+
+        internal async Task GetAllCategoryAsync()
+        {
+            Categories = await _categoryService.GetAllCategoryAsync();
         }
 
         internal async Task AddJobAsync(string userName)

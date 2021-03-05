@@ -1,0 +1,40 @@
+﻿@model ViewCategoryModel
+
+@{
+    ViewData["Title"] = "View Category";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="m-5">
+            <div class="row p-2 text-center">
+                <div class="col-12 text-center">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="text-primary">All Categories</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    @foreach (var category in Model.Categories)
+                                    {
+                                    <div class="col-4">
+                                        <ul class="list-group">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center m-1">
+                                                @category.Name
+                                                <a asp-area="Admin" asp-controller="Category" asp-action="Edit" asp-route-id=@category.Id class="float-right">
+                                                    <i class="nav-icon far fa-edit"></i> Edit
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

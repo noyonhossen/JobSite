@@ -11,9 +11,10 @@ namespace DreamJobs.Web.Areas.Company.Controllers
     public class JobController : Controller
     {
         [HttpGet]
-        public IActionResult AddJob()
+        public async Task<IActionResult> AddJob()
         {
             var model = new AddJobModel();
+            await model.GetAllCategoryAsync();
             return View(model);
         }
 

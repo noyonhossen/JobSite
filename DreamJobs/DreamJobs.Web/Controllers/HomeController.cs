@@ -18,9 +18,11 @@ namespace DreamJobs.Web.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = new CategoryModel();
+            await model.GetAllCategoryAsync();
+            return View(model);
         }
 
         public IActionResult Privacy()
