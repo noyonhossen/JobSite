@@ -34,7 +34,7 @@ namespace DreamJobs.Web.Areas.Company.Models
         public bool IsOtherApplicable { get; set; }
         [Required(ErrorMessage = "Please Enter Required Skills")]
         public string SkillsRequired { get; set; }
-        [Required(ErrorMessage = "Please Enter Category")]
+        [Required(ErrorMessage = "Please Select Category")]
         public string Category { get; set; }
         [Required(ErrorMessage = "Please Enter Email")]
         public string EmailForApply { get; set; }
