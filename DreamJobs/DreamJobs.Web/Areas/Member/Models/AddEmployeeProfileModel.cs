@@ -32,22 +32,32 @@ namespace DreamJobs.Web.Areas.Member.Models
         public string Skills { get; set; }
 
         private IEmployeeService _employeeService;
+        private ISkillService _skillService;
 
         public AddEmployeeProfileModel()
         {
             _employeeService = Startup.AutofacContainer.Resolve<IEmployeeService>();
+            _skillService = Startup.AutofacContainer.Resolve<ISkillService>();
             DateOfBirth = DateTime.Now;
         }
 
-        public AddEmployeeProfileModel(IEmployeeService employeeService)
+        public AddEmployeeProfileModel(IEmployeeService employeeService,
+                                        ISkillService skillService)
         {
             _employeeService = employeeService;
+            _skillService = skillService;
             DateOfBirth = DateTime.Now;
         }
 
         public async Task AddProfileDetails(string userName)
         {
             var user = await base.GetUserAsync(userName);
+
+            var skills = base.ConvertStringSkillsToEntitySkills(this.Skills);
+            var skillList = base.ConvertStringSkillsToSkillList(this.Skills);
+            var employeeSkills = new List<EmployeeSkill>();
+
+            await _skillService.AddAsync(skills);
 
             var employee = new Employee()
             {
@@ -63,6 +73,23 @@ namespace DreamJobs.Web.Areas.Member.Models
                 Skills = this.Skills
             };
 
+            foreach (var skill in skillList)
+            {
+                var skillEntity = await _skillService.GetSkillByNameAsync(skill);
+
+                if(skillEntity != null)
+                {
+                    var employeeSkill = new EmployeeSkill
+                    {
+                        SkillId = skillEntity.Id,
+                        EmployeeId = user.Id
+                    };
+
+                    employeeSkills.Add(employeeSkill);
+                }
+            }
+
+            employee.EmployeeSkills = employeeSkills;
             await _employeeService.AddAsync(employee);
         }
     }

@@ -61,6 +61,15 @@ namespace DreamJobs.Framework
             builder.RegisterType<CategoryService>().As<ICategoryService>()
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<SkillRepository>().As<ISkillRepository>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<SkillUnitOfWork>().As<ISkillUnitOfWork>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<SkillService>().As<ISkillService>()
+                .InstancePerLifetimeScope();
+
             base.Load(builder);
         }
     }

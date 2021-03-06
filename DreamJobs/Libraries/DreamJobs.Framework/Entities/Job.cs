@@ -31,5 +31,6 @@ namespace DreamJobs.Framework.Entities
         public string SkillsRequired { get; set; }
         public string Category { get; set; }
         public string EmailForApply { get; set; }
+        public IList<JobSkill> JobSkills { get; set; }
     }
 }
