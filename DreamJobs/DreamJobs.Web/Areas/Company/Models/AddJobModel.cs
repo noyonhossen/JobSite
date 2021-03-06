@@ -34,7 +34,7 @@ namespace DreamJobs.Web.Areas.Company.Models
         public bool IsOtherApplicable { get; set; }
         [Required(ErrorMessage = "Please Enter Required Skills")]
         public string SkillsRequired { get; set; }
-        [Required(ErrorMessage = "Please Enter Category")]
+        [Required(ErrorMessage = "Please Select Category")]
         public string Category { get; set; }
         [Required(ErrorMessage = "Please Enter Email")]
         public string EmailForApply { get; set; }
@@ -73,25 +73,26 @@ namespace DreamJobs.Web.Areas.Company.Models
         {
             var user = await base.GetUserAsync(userName);
             var companyDetails = await _companyService.GetCompanyDetailsAsync(user.Id);
+            var dateTime = DateTime.Now;
 
             var job = new Job
             {
                 CompanyId = companyDetails.Id,
                 JobTitle = this.JobTitle,
-                JobContext = this.JobContext??"NA",
+                JobContext = this.JobContext ?? "NA",
                 JobResponsibilities = this.JobResponsibilities,
-                Vacancy = this.Vacancy??1,
-                Salary = this.Salary?? "Negotiable",
-                JobLocation = this.JobLocation?? "Anywhere in Bangladesh",
+                Vacancy = this.Vacancy ?? 1,
+                Salary = this.Salary ?? "Negotiable",
+                JobLocation = this.JobLocation ?? "Anywhere in Bangladesh",
                 WorkPlace = this.WorkPlace ?? "Work at office",
                 EducationRequired = this.EducationRequired ?? "NA",
                 ExperienceRequirements = this.ExperienceRequirements ?? "NA",
                 DeadLine = this.DeadLine,
-                EmploymentStatus = this.EmploymentStatus??"Full-time",
-                Age = this.Age??"NA",
-                AdditionalRequirements = this.AdditionalRequirements??"NA",
-                CompensationAndOtherBenefits = this.CompensationAndOtherBenefits??"NA",
-                PublishedDate = DateTime.Now,
+                EmploymentStatus = this.EmploymentStatus ?? "Full-time",
+                Age = this.Age ?? "NA",
+                AdditionalRequirements = this.AdditionalRequirements ?? "NA",
+                CompensationAndOtherBenefits = this.CompensationAndOtherBenefits ?? "NA",
+                PublishedDate = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day),
                 IsMaleApplicable = this.IsMaleApplicable,
                 IsFemaleApplicable = this.IsFemaleApplicable,
                 IsOtherApplicable = this.IsOtherApplicable,

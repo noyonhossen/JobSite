@@ -18,5 +18,6 @@ namespace DreamJobs.Web.Models
         public string SkillsRequired { get; set; }
         public string SkillsMatched { get; set; }
         public int TotalSkillsMatched { get; set; }
+        public int TotalSkillsRequired { get; set; }
     }
 }

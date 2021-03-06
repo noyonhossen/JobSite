@@ -60,7 +60,8 @@ namespace DreamJobs.Web.Models
                 CompanyAddress = jobDetails.Company.Address,
                 CompanyWebsite = jobDetails.Company.Website,
                 SkillsMatched = userName == null ? "" : (base.GetUserMatchedSkillsAsync(jobDetails.SkillsRequired, employee.Skills)).matchedSkills,
-                TotalSkillsMatched = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(jobDetails.SkillsRequired, employee.Skills)).totalSkills
+                TotalSkillsMatched = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(jobDetails.SkillsRequired, employee.Skills)).totalSkills,
+                TotalSkillsRequired = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(jobDetails.SkillsRequired, employee.Skills)).totalSkillsRequired
             };
 
             JobDetails = jobDetail;

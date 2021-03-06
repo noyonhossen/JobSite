@@ -48,7 +48,8 @@ namespace DreamJobs.Web.Models
                     DeadLine = job.DeadLine,
                     SkillsRequired = job.SkillsRequired,
                     SkillsMatched = userName == null ? "" : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).matchedSkills,
-                    TotalSkillsMatched = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).totalSkills
+                    TotalSkillsMatched = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).totalSkills,
+                    TotalSkillsRequired = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).totalSkillsRequired
                 };
 
                 jobCardShortLists.Add(jobCardShortList);

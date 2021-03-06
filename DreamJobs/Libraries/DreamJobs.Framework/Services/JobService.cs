@@ -49,5 +49,20 @@ namespace DreamJobs.Framework.Services
                                                                         false);
             return companyJobDetails.FirstOrDefault();
         }
+
+        public async Task<int> GetTotalJobsAsync()
+        {
+            var totalJobs = await _jobUnitOfWork.JobRepository.GetCountAsync();
+            return totalJobs;
+        }
+
+        public async Task<int> GetJobsPostedTodayAsync()
+        {
+            var dateTime = DateTime.Now;
+            var today = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+
+            var totalJobs = await _jobUnitOfWork.JobRepository.GetCountAsync(t => t.PublishedDate == today);
+            return totalJobs;
+        }
     }
 }
