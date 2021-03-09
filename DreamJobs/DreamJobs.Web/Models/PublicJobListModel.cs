@@ -52,11 +52,12 @@ namespace DreamJobs.Web.Models
                     DeadLine = job.DeadLine,
                     SkillsList = job.JobSkills,
                     SkillsRequired = await _skillService.GetJobSkillsAsync(job.JobSkills),
-                    SkillsMatched = userName == null ? "" : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).matchedSkills,
-                    TotalSkillsMatched = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).totalSkills,
-                    TotalSkillsRequired = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).totalSkillsRequired
+                    //SkillsMatched = userName == null ? "" : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).matchedSkills,
+                    //TotalSkillsMatched = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).totalSkills,
+                    //TotalSkillsRequired = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).totalSkillsRequired
                 };
 
+                jobCardShortList.TotalSkillsRequired = jobCardShortList.SkillsRequired.Count;
                 jobCardShortLists.Add(jobCardShortList);
             }
 

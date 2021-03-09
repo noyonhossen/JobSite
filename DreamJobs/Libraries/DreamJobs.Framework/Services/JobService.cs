@@ -38,7 +38,7 @@ namespace DreamJobs.Framework.Services
             var jobs = await _jobUnitOfWork.JobRepository.GetAsync(
                                                             c => c.Category == category,
                                                             null,
-                                                            x => x.Include(i => i.Company),
+                                                            x => x.Include(i => i.JobSkills).Include(j => j.Company),
                                                             false);
             return jobs;
         }
