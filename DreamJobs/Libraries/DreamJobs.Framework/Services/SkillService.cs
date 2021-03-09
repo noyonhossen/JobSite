@@ -48,6 +48,16 @@ namespace DreamJobs.Framework.Services
             return skills;
         }
 
+        public async Task<List<Skill>> GetJobSkillsAsync(IList<JobSkill> jobSkills)
+        {
+            var skills = new List<Skill>();
+            foreach (var skill in jobSkills)
+            {
+                skills.Add(await _skillUnitOfWork.SkillRepository.GetByIdAsync(skill.SkillId));
+            }
+            return skills;
+        }
+
         public async Task<IList<Skill>> GetAllSkillAsync()
         {
             return await _skillUnitOfWork.SkillRepository.GetAllAsync();

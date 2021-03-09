@@ -26,7 +26,10 @@ namespace DreamJobs.Framework.Services
 
         public async Task<IList<Job>> GetCompanyAllJobAsync(Company companyInfo)
         {
-            var companyJobList = await _jobUnitOfWork.JobRepository.GetAsync(c => c.CompanyId == companyInfo.Id);
+            var companyJobList = await _jobUnitOfWork.JobRepository.GetAsync(c => c.CompanyId == companyInfo.Id,
+                                                                            null,
+                                                                            x => x.Include(i => i.JobSkills),
+                                                                            false);
             return companyJobList;
         }
         
@@ -45,7 +48,7 @@ namespace DreamJobs.Framework.Services
             var companyJobDetails = await _jobUnitOfWork.JobRepository.GetAsync(
                                                                         c => c.Id == jobId,
                                                                         null,
-                                                                        x => x.Include(i => i.Company),
+                                                                        x => x.Include(i => i.JobSkills),
                                                                         false);
             return companyJobDetails.FirstOrDefault();
         }

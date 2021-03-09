@@ -12,15 +12,19 @@ namespace DreamJobs.Web.Models
     {
         public IList<JobCardShortListModel> JobCardShortLists { get; set; }
         private IJobService _jobService;
+        private ISkillService _skillService;
 
         public PublicJobListModel()
         {
             _jobService = Startup.AutofacContainer.Resolve<IJobService>();
+            _skillService = Startup.AutofacContainer.Resolve<ISkillService>();
         }
 
-        public PublicJobListModel(IJobService jobService)
+        public PublicJobListModel(IJobService jobService,
+            ISkillService skillService)
         {
             _jobService = jobService;
+            _skillService = skillService;
         }
 
         internal async Task GetJobsByCategoryAsync(string category, string userName)
@@ -46,7 +50,8 @@ namespace DreamJobs.Web.Models
                     EducationRequired = job.EducationRequired,
                     ExperienceRequirements = job.ExperienceRequirements,
                     DeadLine = job.DeadLine,
-                    SkillsRequired = job.SkillsRequired,
+                    SkillsList = job.JobSkills,
+                    SkillsRequired = await _skillService.GetJobSkillsAsync(job.JobSkills),
                     SkillsMatched = userName == null ? "" : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).matchedSkills,
                     TotalSkillsMatched = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).totalSkills,
                     TotalSkillsRequired = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).totalSkillsRequired

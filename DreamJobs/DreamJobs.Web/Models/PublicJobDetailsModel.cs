@@ -12,15 +12,19 @@ namespace DreamJobs.Web.Models
     {
         public JobDetailsModel JobDetails { get; set; }
         private IJobService _jobService;
+        private ISkillService _skillService;
 
         public PublicJobDetailsModel()
         {
             _jobService = Startup.AutofacContainer.Resolve<IJobService>();
+            _skillService = Startup.AutofacContainer.Resolve<ISkillService>();
         }
 
-        public PublicJobDetailsModel(IJobService jobService, ICompanyService companyService)
+        public PublicJobDetailsModel(IJobService jobService,
+            ISkillService skillService)
         {
             _jobService = jobService;
+            _skillService = skillService;
         }
 
         internal async Task GetJobDetailsAsync(Guid jobId, string userName)
@@ -54,14 +58,15 @@ namespace DreamJobs.Web.Models
                 IsMaleApplicable = jobDetails.IsMaleApplicable,
                 IsFemaleApplicable = jobDetails.IsFemaleApplicable,
                 IsOtherApplicable = jobDetails.IsOtherApplicable,
-                SkillsRequired = jobDetails.SkillsRequired,
+                SkillsList = jobDetails.JobSkills,
                 Category = jobDetails.Category,
                 EmailForApply = jobDetails.EmailForApply,
                 CompanyAddress = jobDetails.Company.Address,
                 CompanyWebsite = jobDetails.Company.Website,
                 SkillsMatched = userName == null ? "" : (base.GetUserMatchedSkillsAsync(jobDetails.SkillsRequired, employee.Skills)).matchedSkills,
                 TotalSkillsMatched = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(jobDetails.SkillsRequired, employee.Skills)).totalSkills,
-                TotalSkillsRequired = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(jobDetails.SkillsRequired, employee.Skills)).totalSkillsRequired
+                TotalSkillsRequired = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(jobDetails.SkillsRequired, employee.Skills)).totalSkillsRequired,
+                SkillsRequired = await _skillService.GetJobSkillsAsync(jobDetails.JobSkills)
             };
 
             JobDetails = jobDetail;
