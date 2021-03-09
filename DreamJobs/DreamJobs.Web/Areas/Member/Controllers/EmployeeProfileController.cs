@@ -51,9 +51,10 @@ namespace DreamJobs.Web.Areas.Member.Controllers
             return View(model);
         }
 
-        public IActionResult AddEmployeeProfile()
+        public async Task<IActionResult> AddEmployeeProfile()
         {
             var model = new AddEmployeeProfileModel();
+            await model.LoadAllSkills();
             return View(model);
         }
 

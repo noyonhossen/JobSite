@@ -28,8 +28,9 @@ namespace DreamJobs.Web.Areas.Member.Models
         public string PresentAddress { get; set; }
         [Required(ErrorMessage = "Please Enter Your Permanent Address")]
         public string PermanentAddress { get; set; }
-        [Required(ErrorMessage = "Please Enter Your Skills")]
-        public string Skills { get; set; }
+        [Required(ErrorMessage = "Please Select at least 1 Skill")]
+        public List<string> Skills { get; set; }
+        public IList<Skill> SkillList { get; set; }
 
         private IEmployeeService _employeeService;
         private ISkillService _skillService;
@@ -49,15 +50,15 @@ namespace DreamJobs.Web.Areas.Member.Models
             DateOfBirth = DateTime.Now;
         }
 
+        internal async Task LoadAllSkills()
+        {
+            SkillList = await _skillService.GetAllSkillAsync();
+        }
+
         public async Task AddProfileDetails(string userName)
         {
             var user = await base.GetUserAsync(userName);
-
-            var skills = base.ConvertStringSkillsToEntitySkills(this.Skills);
-            var skillList = base.ConvertStringSkillsToSkillList(this.Skills);
             var employeeSkills = new List<EmployeeSkill>();
-
-            await _skillService.AddAsync(skills);
 
             var employee = new Employee()
             {
@@ -70,23 +71,16 @@ namespace DreamJobs.Web.Areas.Member.Models
                 MobileNo = this.MobileNo,
                 PresentAddress = this.PresentAddress,
                 PermanentAddress = this.PermanentAddress,
-                Skills = this.Skills
             };
 
-            foreach (var skill in skillList)
+            foreach (var skill in Skills)
             {
-                var skillEntity = await _skillService.GetSkillByNameAsync(skill);
-
-                if(skillEntity != null)
+                var employeeSkill = new EmployeeSkill
                 {
-                    var employeeSkill = new EmployeeSkill
-                    {
-                        SkillId = skillEntity.Id,
-                        EmployeeId = user.Id
-                    };
-
-                    employeeSkills.Add(employeeSkill);
-                }
+                    SkillId = Guid.Parse(skill),
+                    EmployeeId = user.Id
+                };
+                employeeSkills.Add(employeeSkill);
             }
 
             employee.EmployeeSkills = employeeSkills;

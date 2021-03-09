@@ -98,11 +98,16 @@
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <div class="form-group">
-                                <label asp-for="Skills" class="label">Skills</label>
-                                <input type="text" asp-for="Skills" class="form-control" id="Skills" placeholder="Enter your Skills" required>
+                            <div class="form-group pt-2">
+                                <label asp-for="Skills">Skills</label>
+                                <select class="form-control" asp-for="Skills" required multiple>
+                                    @foreach (var skill in Model.SkillList)
+                                    {
+                                        <option value="@skill.Id">@skill.Name</option>
+                                    }
+                                </select>
                                 <p class="form-text">
-                                    Enter skills seperated by comma(,). Example: C,C#,HTML,JS
+                                    Hold down the Ctrl to select multiple options.
                                 </p>
                                 <p class="text-danger my-2">
                                     <span asp-validation-for="Skills"></span>

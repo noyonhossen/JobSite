@@ -37,5 +37,10 @@ namespace DreamJobs.Framework.Services
             var skills = await _skillUnitOfWork.SkillRepository.GetAsync( s => s.Name == skillName);
             return skills.FirstOrDefault();
         }
+
+        public async Task<IList<Skill>> GetAllSkillAsync()
+        {
+            return await _skillUnitOfWork.SkillRepository.GetAllAsync();
+        }
     }
 }

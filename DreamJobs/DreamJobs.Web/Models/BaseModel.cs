@@ -66,32 +66,32 @@ namespace DreamJobs.Web.Models
             return (matchedSkills.ToString().TrimEnd(','), totalMatchedSkills, totalSkillsRequired);
         }
 
-        public List<Skill> ConvertStringSkillsToEntitySkills(string skills)
-        {
-            var skillsList = new List<Skill>();
+        //public List<Skill> ConvertStringSkillsToEntitySkills(string skills)
+        //{
+        //    var skillsList = new List<Skill>();
 
-            string[] skillListSplit = skills.Split(',');
+        //    string[] skillListSplit = skills.Split(',');
 
-            foreach (var skill in skillListSplit)
-            {
-                skillsList.Add(new Skill { Name = skill.Trim().ToLower() });
-            }
+        //    foreach (var skill in skillListSplit)
+        //    {
+        //        skillsList.Add(new Skill { Name = skill.Trim().ToLower() });
+        //    }
 
-            return skillsList;
-        }
+        //    return skillsList;
+        //}
 
-        public List<string> ConvertStringSkillsToSkillList(string skills)
-        {
-            var skillsList = new List<string>();
+        //public List<string> ConvertStringSkillsToSkillList(string skills)
+        //{
+        //    var skillsList = new List<string>();
 
-            string[] skillListSplit = skills.Split(',');
+        //    string[] skillListSplit = skills.Split(',');
 
-            foreach (var skill in skillListSplit)
-            {
-                skillsList.Add(skill.Trim().ToLower());
-            }
+        //    foreach (var skill in skillListSplit)
+        //    {
+        //        skillsList.Add(skill.Trim().ToLower());
+        //    }
 
-            return skillsList;
-        }
+        //    return skillsList;
+        //}
     }
 }
