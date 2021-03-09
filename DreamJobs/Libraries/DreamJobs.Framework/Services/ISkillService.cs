@@ -10,5 +10,6 @@ namespace DreamJobs.Framework.Services
         Task AddAsync(IList<Skill> skills);
         Task<Skill> GetSkillByNameAsync(string skillName);
         Task<IList<Skill>> GetAllSkillAsync();
+        Task<List<Skill>> GetEmployeeSkillsAsync(IList<EmployeeSkill> employeeSkills);
     }
 }
