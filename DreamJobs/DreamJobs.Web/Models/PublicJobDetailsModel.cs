@@ -63,11 +63,11 @@ namespace DreamJobs.Web.Models
                 EmailForApply = jobDetails.EmailForApply,
                 CompanyAddress = jobDetails.Company.Address,
                 CompanyWebsite = jobDetails.Company.Website,
-                //SkillsMatched = userName == null ? "" : (base.GetUserMatchedSkillsAsync(jobDetails.SkillsRequired, employee.Skills)).matchedSkills,
-                //TotalSkillsMatched = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(jobDetails.SkillsRequired, employee.Skills)).totalSkills,
-                //TotalSkillsRequired = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(jobDetails.SkillsRequired, employee.Skills)).totalSkillsRequired,
                 SkillsRequired = await _skillService.GetJobSkillsAsync(jobDetails.JobSkills)
             };
+
+            jobDetail.SkillsMatched = await _skillService.GetMatchedSkillsAsync(jobDetail.SkillsRequired, employee.EmployeeSkills);
+            jobDetail.TotalSkillsMatched = jobDetail.SkillsMatched.Count;
             jobDetail.TotalSkillsRequired = jobDetail.SkillsRequired.Count;
 
             JobDetails = jobDetail;
