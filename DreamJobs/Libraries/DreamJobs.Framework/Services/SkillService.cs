@@ -58,6 +58,27 @@ namespace DreamJobs.Framework.Services
             return skills;
         }
 
+        public async Task<List<string>> GetMatchedSkillsAsync(IList<Skill> requiredJobSkills, IList<EmployeeSkill> employeeSkills)
+        {
+            var userSkills = new List<Skill>();
+            var matchedSkills = new List<string>();
+
+            userSkills = await GetEmployeeSkillsAsync(employeeSkills);
+
+            foreach (var requiredJobSkill in requiredJobSkills)
+            {
+                foreach (var userSkill in userSkills)
+                {
+                    if (requiredJobSkill.Id == userSkill.Id)
+                    {
+                        matchedSkills.Add(requiredJobSkill.Name);
+                    }
+                }
+            }
+
+            return matchedSkills;
+        }
+
         public async Task<IList<Skill>> GetAllSkillAsync()
         {
             return await _skillUnitOfWork.SkillRepository.GetAllAsync();

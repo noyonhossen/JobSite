@@ -16,10 +16,10 @@ namespace DreamJobs.Web.Models
         public string EducationRequired { get; set; }
         public string ExperienceRequirements { get; set; }
         public DateTime DeadLine { get; set; }
-        public string SkillsMatched { get; set; }
         public int TotalSkillsMatched { get; set; }
         public int TotalSkillsRequired { get; set; }
         public List<Skill> SkillsRequired { get; set; }
+        public List<string> SkillsMatched { get; set; }
         public IList<JobSkill> SkillsList { get; set; }
     }
 }

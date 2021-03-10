@@ -54,7 +54,11 @@
                 <span>skills</span>
             }
             @Model.TotalSkillsMatched out of @Model.TotalSkillsRequired :
-            <span>@Model.SkillsMatched</span>
+
+            @foreach (var skillMatched in Model.SkillsMatched)
+            {
+                <span>@skillMatched,</span>
+            }
         </h6>
     }
 </div>
