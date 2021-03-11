@@ -13,7 +13,7 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-header">Profile</li>
+            <li class="nav-header">Category</li>
             <li class="nav-item">
                 <a asp-area="Admin" asp-controller="Category" asp-action="ViewCategory" class="nav-link">
                     <i class="nav-icon fa fa-fw fa-list"></i>
@@ -27,6 +27,25 @@
                     <i class="nav-icon fa fa-fw fa-plus-circle"></i>
                     <p>
                         Add Category
+                    </p>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-header">Skill</li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="Skill" asp-action="ViewSkill" class="nav-link">
+                    <i class="nav-icon fa fa-fw fa-list"></i>
+                    <p>
+                        View Skills
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="Admin" asp-controller="Skill" asp-action="Add" class="nav-link">
+                    <i class="nav-icon fa fa-fw fa-plus-circle"></i>
+                    <p>
+                        Add Skill
                     </p>
                 </a>
             </li>

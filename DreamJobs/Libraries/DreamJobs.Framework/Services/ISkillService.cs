@@ -8,6 +8,7 @@ namespace DreamJobs.Framework.Services
     public interface ISkillService
     {
         Task AddAsync(IList<Skill> skills);
+        Task AddSkillAsync(Skill skill);
         Task<Skill> GetSkillByNameAsync(string skillName);
         Task<IList<Skill>> GetAllSkillAsync();
         Task<List<Skill>> GetEmployeeSkillsAsync(IList<EmployeeSkill> employeeSkills);
