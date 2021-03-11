@@ -28,24 +28,24 @@ namespace DreamJobs.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        //public async Task<IActionResult> Edit(Guid id)
-        //{
-        //    var model = new EditCategoryModel();
-        //    await model.LoadModelDataAsync(id);
-        //    return View(model);
-        //}
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var model = new EditSkillModel();
+            await model.LoadModelDataAsync(id);
+            return View(model);
+        }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(EditCategoryModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        await model.EditCategory();
-        //        return RedirectToAction("ViewCategory", "Category", new { Area = "Admin" });
-        //    }
-        //    return View(model);
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(EditSkillModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                await model.EditSkill();
+                return RedirectToAction("ViewSkill", "Skill", new { Area = "Admin" });
+            }
+            return View(model);
+        }
 
         public async Task<IActionResult> ViewSkill()
         {

@@ -43,9 +43,21 @@ namespace DreamJobs.Framework.Services
             }
         }
 
+        public async Task UpdateAsync(Skill skill)
+        {
+            await _skillUnitOfWork.SkillRepository.EditAsync(skill);
+            await _skillUnitOfWork.SaveAsync();
+        }
+
         public async Task<Skill> GetSkillByNameAsync(string skillName)
         {
             var skills = await _skillUnitOfWork.SkillRepository.GetAsync( s => s.Name == skillName);
+            return skills.FirstOrDefault();
+        }
+
+        public async Task<Skill> GetSkillByIdAsync(Guid id)
+        {
+            var skills = await _skillUnitOfWork.SkillRepository.GetAsync(s => s.Id == id);
             return skills.FirstOrDefault();
         }
 
