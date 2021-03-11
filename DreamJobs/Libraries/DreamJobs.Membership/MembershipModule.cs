@@ -2,6 +2,7 @@
 using DreamJobs.Membership.Contexts;
 using DreamJobs.Membership.Entities;
 using DreamJobs.Membership.Security;
+using DreamJobs.Membership.Seeds;
 using DreamJobs.Membership.Services;
 using Microsoft.AspNetCore.Authorization;
 
@@ -44,6 +45,9 @@ namespace DreamJobs.Membership
 
             builder.RegisterType<RoleService>().As<IRoleService<ApplicationUser>>()
                 .SingleInstance();
+
+            builder.RegisterType<InternalUserSeed>().AsSelf()
+                .InstancePerLifetimeScope();
 
             base.Load(builder);
         }

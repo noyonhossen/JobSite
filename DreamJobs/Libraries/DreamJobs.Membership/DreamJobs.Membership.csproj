@@ -18,7 +18,6 @@
     <Folder Include="BusinessObjects\" />
     <Folder Include="DTOs\" />
     <Folder Include="Repositories\" />
-    <Folder Include="Seeds\" />
     <Folder Include="UnitOfWorks\" />
   </ItemGroup>
 

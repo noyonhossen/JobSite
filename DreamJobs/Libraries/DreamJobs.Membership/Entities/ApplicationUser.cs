@@ -19,6 +19,12 @@ namespace DreamJobs.Membership.Entities
 
         }
 
+        public ApplicationUser(string userName, string email)
+            : base(userName)
+        {
+            Email = email;
+        }
+
         public ApplicationUser(string userName, string mobileNumber, string email)
             : base(userName)
         {
