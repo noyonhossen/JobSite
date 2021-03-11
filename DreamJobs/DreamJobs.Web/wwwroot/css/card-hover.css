@@ -1,0 +1,7 @@
+﻿a:hover div.card {
+    border: 2px solid #0026ff;
+}
+
+a:hover {
+    text-decoration: none;
+}

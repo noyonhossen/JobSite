@@ -32,11 +32,6 @@ namespace DreamJobs.Web.Models
             var employee = new Employee();
             var jobDetails = await _jobService.GetJobDetailsAsync(jobId);
 
-            if (userName != null)
-            {
-                employee = await base.GetEmployeeAsync(userName);
-            }
-
             var jobDetail = new JobDetailsModel
             {
                 CompanyName = jobDetails.Company.Name,
@@ -66,8 +61,13 @@ namespace DreamJobs.Web.Models
                 SkillsRequired = await _skillService.GetJobSkillsAsync(jobDetails.JobSkills)
             };
 
-            jobDetail.SkillsMatched = await _skillService.GetMatchedSkillsAsync(jobDetail.SkillsRequired, employee.EmployeeSkills);
-            jobDetail.TotalSkillsMatched = jobDetail.SkillsMatched.Count;
+            if (userName != null)
+            {
+                employee = await base.GetEmployeeAsync(userName);
+                jobDetail.SkillsMatched = await _skillService.GetMatchedSkillsAsync(jobDetail.SkillsRequired, employee.EmployeeSkills);
+                jobDetail.TotalSkillsMatched = jobDetail.SkillsMatched.Count;
+            }
+
             jobDetail.TotalSkillsRequired = jobDetail.SkillsRequired.Count;
 
             JobDetails = jobDetail;

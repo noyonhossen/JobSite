@@ -17,7 +17,6 @@ namespace DreamJobs.Framework.Entities
         public string MobileNo { get; set; }
         public string PresentAddress { get; set; }
         public string PermanentAddress { get; set; }
-        public string Skills { get; set; }
         public IList<EmployeeSkill> EmployeeSkills { get; set; }
     }
 }

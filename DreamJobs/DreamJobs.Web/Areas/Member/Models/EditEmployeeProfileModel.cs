@@ -56,7 +56,6 @@ namespace DreamJobs.Web.Areas.Member.Models
             MobileNo = employee.MobileNo;
             PresentAddress = employee.PresentAddress;
             PermanentAddress = employee.PermanentAddress;
-            Skills = employee.Skills;
         }
 
         public async Task EditProfile(string userName)
@@ -73,7 +72,6 @@ namespace DreamJobs.Web.Areas.Member.Models
             employee.MobileNo = this.MobileNo;
             employee.PresentAddress = this.PresentAddress;
             employee.PermanentAddress = this.PermanentAddress;
-            employee.Skills = this.Skills;
 
             await _employeeService.UpdateAsync(employee);
         }
