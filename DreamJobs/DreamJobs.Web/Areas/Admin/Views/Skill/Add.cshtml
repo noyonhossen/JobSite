@@ -1,0 +1,42 @@
+﻿@model AddSkillModel
+
+@{
+    ViewData["Title"] = "Add Skill";
+}
+
+<div class="row p-5">
+    <div class="col-2">
+
+    </div>
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="text-success">
+                    Add Skill
+                </h4>
+            </div>
+            <div class="card-body bg-card">
+                <form asp-area="Admin" asp-controller="Skill" asp-action="Add" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="SkillName" class="label">Skill</label>
+                        <input type="text" asp-for="SkillName" class="form-control" id="SkillName" placeholder="Enter Skill">
+                        <p class="text-danger my-2">
+                            <span asp-validation-for="SkillName"></span>
+                        </p>
+                    </div>
+                    <hr>
+                    <button type="submit" class="btn btn-primary">
+                        Add
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-2">
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

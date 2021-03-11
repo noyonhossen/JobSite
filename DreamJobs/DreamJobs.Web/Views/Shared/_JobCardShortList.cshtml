@@ -18,7 +18,11 @@
             </h6>
             <h6 class="card-text text-secondary">
                 <i class="fas fa-medal"></i>
-                Skills: <span>@Model.SkillsRequired</span>
+                Skills:
+                @foreach (var skill in Model.SkillsRequired)
+                {
+                    <span class="">@skill.Name,</span>
+                }
             </h6>
         </div>
         <div class="col-5">
@@ -50,7 +54,11 @@
                 <span>skills</span>
             }
             @Model.TotalSkillsMatched out of @Model.TotalSkillsRequired :
-            <span>@Model.SkillsMatched</span>
+
+            @foreach (var skillMatched in Model.SkillsMatched)
+            {
+                <span>@skillMatched,</span>
+            }
         </h6>
     }
 </div>

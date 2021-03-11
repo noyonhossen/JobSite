@@ -64,7 +64,7 @@ namespace DreamJobs.Web.Areas.Company.Controllers
             if (ModelState.IsValid)
             {
                 await model.AddProfileDetails(User.Identity.Name);
-                return RedirectToAction("Index", "Dashboard", new { Area = "Job" });
+                return RedirectToAction("ViewCompanyProfile", "CompanyProfile", new { Area = "Company" });
             }
             return View(model);
         }

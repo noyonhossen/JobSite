@@ -1,0 +1,42 @@
+﻿@model ViewSkillModel
+
+@{
+    ViewData["Title"] = "View Skill";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="m-5">
+            <div class="row p-2 text-center">
+                <div class="col-12 text-center">
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="text-primary">All Skills</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    @foreach (var skill in Model.Skills)
+                                    {
+                                        <div class="col-4"></div>
+                                        <div class="col-4">
+                                            <ul class="list-group">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center m-1">
+                                                    @skill.Name
+                                                    @*<a asp-area="Admin" asp-controller="Skill" asp-action="Edit" asp-route-id=@skill.Id class="float-right">
+                                                        <i class="nav-icon far fa-edit"></i> Edit
+                                                    </a>*@
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-4"></div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

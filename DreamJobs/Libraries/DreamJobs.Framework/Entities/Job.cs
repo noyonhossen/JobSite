@@ -28,8 +28,8 @@ namespace DreamJobs.Framework.Entities
         public bool IsMaleApplicable { get; set; }
         public bool IsFemaleApplicable { get; set; }
         public bool IsOtherApplicable { get; set; }
-        public string SkillsRequired { get; set; }
         public string Category { get; set; }
         public string EmailForApply { get; set; }
+        public IList<JobSkill> JobSkills { get; set; }
     }
 }

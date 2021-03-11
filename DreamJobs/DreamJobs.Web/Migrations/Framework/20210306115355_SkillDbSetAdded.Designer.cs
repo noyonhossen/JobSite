@@ -4,14 +4,16 @@ using DreamJobs.Framework.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DreamJobs.Web.Migrations.Framework
 {
     [DbContext(typeof(FrameworkContext))]
-    partial class FrameworkContextModelSnapshot : ModelSnapshot
+    [Migration("20210306115355_SkillDbSetAdded")]
+    partial class SkillDbSetAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,6 +92,9 @@ namespace DreamJobs.Web.Migrations.Framework
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PresentAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Skills")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("UserId")
@@ -179,6 +184,9 @@ namespace DreamJobs.Web.Migrations.Framework
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Salary")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SkillsRequired")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Vacancy")

@@ -27,8 +27,6 @@ namespace DreamJobs.Web.Areas.Member.Models
         public string PresentAddress { get; set; }
         [Required(ErrorMessage = "Please Enter Your Permanent Address")]
         public string PermanentAddress { get; set; }
-        [Required(ErrorMessage = "Please Enter Your Skills")]
-        public string Skills { get; set; }
 
         private IEmployeeService _employeeService;
 
@@ -56,7 +54,6 @@ namespace DreamJobs.Web.Areas.Member.Models
             MobileNo = employee.MobileNo;
             PresentAddress = employee.PresentAddress;
             PermanentAddress = employee.PermanentAddress;
-            Skills = employee.Skills;
         }
 
         public async Task EditProfile(string userName)
@@ -73,7 +70,6 @@ namespace DreamJobs.Web.Areas.Member.Models
             employee.MobileNo = this.MobileNo;
             employee.PresentAddress = this.PresentAddress;
             employee.PermanentAddress = this.PermanentAddress;
-            employee.Skills = this.Skills;
 
             await _employeeService.UpdateAsync(employee);
         }

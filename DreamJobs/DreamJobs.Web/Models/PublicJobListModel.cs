@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using DreamJobs.Framework.Entities;
 using DreamJobs.Framework.Services;
+using DreamJobs.Membership.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +13,19 @@ namespace DreamJobs.Web.Models
     {
         public IList<JobCardShortListModel> JobCardShortLists { get; set; }
         private IJobService _jobService;
+        private ISkillService _skillService;
 
         public PublicJobListModel()
         {
             _jobService = Startup.AutofacContainer.Resolve<IJobService>();
+            _skillService = Startup.AutofacContainer.Resolve<ISkillService>();
         }
 
-        public PublicJobListModel(IJobService jobService)
+        public PublicJobListModel(IJobService jobService,
+            ISkillService skillService)
         {
             _jobService = jobService;
+            _skillService = skillService;
         }
 
         internal async Task GetJobsByCategoryAsync(string category, string userName)
@@ -28,11 +33,7 @@ namespace DreamJobs.Web.Models
             var employee = new Employee();
             var jobCardShortLists = new List<JobCardShortListModel>();
             var jobs = await _jobService.GetJobsByCategoryAsync(category);
-
-            if (userName != null)
-            {
-                employee = await base.GetEmployeeAsync(userName);
-            }
+            var claims = await base.GetUserClaimsAsync(userName);
 
             foreach (var job in jobs)
             {
@@ -46,12 +47,18 @@ namespace DreamJobs.Web.Models
                     EducationRequired = job.EducationRequired,
                     ExperienceRequirements = job.ExperienceRequirements,
                     DeadLine = job.DeadLine,
-                    SkillsRequired = job.SkillsRequired,
-                    SkillsMatched = userName == null ? "" : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).matchedSkills,
-                    TotalSkillsMatched = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).totalSkills,
-                    TotalSkillsRequired = userName == null ? 0 : (base.GetUserMatchedSkillsAsync(job.SkillsRequired, employee.Skills)).totalSkillsRequired
+                    SkillsList = job.JobSkills,
+                    SkillsRequired = await _skillService.GetJobSkillsAsync(job.JobSkills)
                 };
 
+                if (userName != null && claims.Where(x => x.Type == MembershipClaims.MemberClaimType).Any())
+                {
+                    employee = await base.GetEmployeeAsync(userName);
+                    jobCardShortList.SkillsMatched = await _skillService.GetMatchedSkillsAsync(jobCardShortList.SkillsRequired, employee.EmployeeSkills);
+                    jobCardShortList.TotalSkillsMatched = jobCardShortList.SkillsMatched.Count;
+                }
+                
+                jobCardShortList.TotalSkillsRequired = jobCardShortList.SkillsRequired.Count;
                 jobCardShortLists.Add(jobCardShortList);
             }
 

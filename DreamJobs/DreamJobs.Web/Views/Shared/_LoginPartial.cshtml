@@ -1,27 +1,49 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using DreamJobs.Membership.Entities
+@using DreamJobs.Membership.Services
+@using DreamJobs.Membership.Constants;
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject IUserService<ApplicationUser> _userService
 
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Signup">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Signin">Login</a>
-    </li>
-}
-</ul>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        var user = await _userService.FindByNameAsync(User.Identity.Name);
+        var claims = await _userService.GetClaimsAsync(user);
+
+        <li class="nav-item mr-auto">
+            @{
+                if (claims.Where(x => x.Type == MembershipClaims.AdminClaimType).Any())
+                {
+                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                }
+                else if (claims.Where(x => x.Type == MembershipClaims.CompanyClaimType).Any())
+                {
+                    <a class="nav-link text-dark" asp-area="Company" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                }
+                else if (claims.Where(x => x.Type == MembershipClaims.MemberClaimType).Any())
+                {
+                    <a class="nav-link text-dark" asp-area="Member" asp-controller="Home" asp-action="Index">Dashboard</a>
+                }
+            }
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-dark btn-outline-primary">Logout</button>
+            </form>
+        </li>
+        }
+        else
+        {
+        <li class="nav-item">
+            <a class="btn btn-outline-primary" asp-area="" asp-controller="Account" asp-action="Signup">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-primary text-white ml-2" asp-area="" asp-controller="Account" asp-action="Signin">Login</a>
+        </li>
+        }
+    </ul>

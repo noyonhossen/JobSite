@@ -14,6 +14,7 @@ namespace DreamJobs.Web.Areas.Company.Controllers
         public async Task<IActionResult> AddJob()
         {
             var model = new AddJobModel();
+            await model.LoadAllSkills();
             await model.GetAllCategoryAsync();
             return View(model);
         }

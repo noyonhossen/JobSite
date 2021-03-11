@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DreamJobs.Framework.Entities;
+using System;
+using System.Collections.Generic;
 
 namespace DreamJobs.Web.Models
 {
@@ -23,13 +25,14 @@ namespace DreamJobs.Web.Models
         public bool IsMaleApplicable { get; set; }
         public bool IsFemaleApplicable { get; set; }
         public bool IsOtherApplicable { get; set; }
-        public string SkillsRequired { get; set; }
-        public string SkillsMatched { get; set; }
         public string Category { get; set; }
         public string EmailForApply { get; set; }
         public string CompanyAddress { get; set; }
         public string CompanyWebsite { get; set; }
         public int TotalSkillsMatched { get; set; }
         public int TotalSkillsRequired { get; set; }
+        public List<Skill> SkillsRequired { get; set; }
+        public List<string> SkillsMatched { get; set; }
+        public IList<JobSkill> SkillsList { get; set; }
     }
 }

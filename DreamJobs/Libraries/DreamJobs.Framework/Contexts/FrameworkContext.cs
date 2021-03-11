@@ -33,6 +33,32 @@ namespace DreamJobs.Framework.Contexts
                 .HasMany(j => j.Jobs)
                 .WithOne(c => c.Company);
 
+            modelBuilder.Entity<EmployeeSkill>()
+                .HasKey(pc => new { pc.EmployeeId, pc.SkillId });
+
+            modelBuilder.Entity<EmployeeSkill>()
+                .HasOne(pc => pc.Employee)
+                .WithMany(p => p.EmployeeSkills)
+                .HasForeignKey(pc => pc.EmployeeId);
+
+            modelBuilder.Entity<EmployeeSkill>()
+                .HasOne(pc => pc.Skill)
+                .WithMany(p => p.EmployeeSkills)
+                .HasForeignKey(pc => pc.SkillId);
+
+            modelBuilder.Entity<JobSkill>()
+                .HasKey(pc => new { pc.JobId, pc.SkillId });
+
+            modelBuilder.Entity<JobSkill>()
+                .HasOne(pc => pc.Job)
+                .WithMany(p => p.JobSkills)
+                .HasForeignKey(pc => pc.JobId);
+
+            modelBuilder.Entity<JobSkill>()
+                .HasOne(pc => pc.Skill)
+                .WithMany(p => p.JobSkills)
+                .HasForeignKey(pc => pc.SkillId);
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -40,6 +66,7 @@ namespace DreamJobs.Framework.Contexts
         public DbSet<Job> Jobs { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Skill> Skills { get; set; }
 
     }
 }

@@ -12,17 +12,22 @@ namespace DreamJobs.Web.Areas.Company.Models
         public IList<JobCardShortListModel> JobCardShortLists { get; set; }
         private IJobService _jobService;
         private ICompanyService _companyService;
+        private ISkillService _skillService;
 
         public CompanyJobListModel()
         {
             _jobService = Startup.AutofacContainer.Resolve<IJobService>();
             _companyService = Startup.AutofacContainer.Resolve<ICompanyService>();
+            _skillService = Startup.AutofacContainer.Resolve<ISkillService>();
         }
 
-        public CompanyJobListModel(IJobService jobService, ICompanyService companyService)
+        public CompanyJobListModel(IJobService jobService,
+            ICompanyService companyService,
+            ISkillService skillService)
         {
             _jobService = jobService;
             _companyService = companyService;
+            _skillService = skillService;
         }
 
         internal async Task GetCompanyAllJobAsync(string userName)
@@ -45,7 +50,8 @@ namespace DreamJobs.Web.Areas.Company.Models
                     EducationRequired = companyJob.EducationRequired,
                     ExperienceRequirements = companyJob.ExperienceRequirements,
                     DeadLine = companyJob.DeadLine,
-                    SkillsRequired = companyJob.SkillsRequired
+                    SkillsList = companyJob.JobSkills,
+                    SkillsRequired = await _skillService.GetJobSkillsAsync(companyJob.JobSkills)
                 };
 
                 jobCardShortLists.Add(jobCardShortList);

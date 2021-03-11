@@ -4,10 +4,15 @@
     ViewData["Title"] = "ViewJobs";
 }
 
+@section Styles
+{
+    <link href="~/css/card-hover.css" rel="stylesheet" />
+}
+
 <div class="container">
-    @if (Model.JobCardShortLists == null)
+    @if (Model.JobCardShortLists.Count == 0)
     {
-        <h1>No jobs found.</h1>
+        <h1 class="text-center">No jobs found.</h1>
     }
     else
     {
@@ -17,16 +22,18 @@
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-8 m-1">
-                    <div class="card">
-                        <div class="card-header">
-                            <a asp-controller="PublicJob" asp-action="ViewJobDetails" asp-route-jobId="@singleCard.JobId"><h4 class="text-success">@singleCard.JobTitle</h4></a>
+                    <a asp-controller="PublicJob" asp-action="ViewJobDetails" asp-route-jobId="@singleCard.JobId">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="text-success">@singleCard.JobTitle</h4>
+                            </div>
+                            <partial name="_JobCardShortList" model="@singleCard" />
                         </div>
-                        <partial name="_JobCardShortList" model="@singleCard" />
-                    </div>
+                    </a>
                 </div>
                 <div class="col-2"></div>
             </div>
-         }
+        }
     }
 </div>
 

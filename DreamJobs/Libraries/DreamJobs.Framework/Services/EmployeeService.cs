@@ -1,5 +1,6 @@
 ﻿using DreamJobs.Framework.Entities;
 using DreamJobs.Framework.UnitOfWorks;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +18,10 @@ namespace DreamJobs.Framework.Services
 
         public async Task<Employee> GetEmployeeDetailsAsync(Guid id)
         {
-            var employees = await _employeeUnitOfWork.EmployeeRepository.GetAsync(x => x.UserId == id);
+            var employees = await _employeeUnitOfWork.EmployeeRepository.GetAsync(x => x.UserId == id,
+                                                                            null,
+                                                                            x => x.Include(i => i.EmployeeSkills),
+                                                                            false);
             return employees.FirstOrDefault();
         }
 

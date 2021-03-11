@@ -61,7 +61,12 @@
                                 <h6>Skills Required</h6>
                                 <ul>
                                     <li>
-                                        <div class="h6">@Model.SkillsRequired</div>
+                                        <div class="h6">
+                                            @foreach (var skill in Model.SkillsRequired)
+                                            {
+                                                <span class="">@skill.Name,</span>
+                                            }
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
@@ -143,7 +148,11 @@
                                     Job Location: @Model.JobLocation
                                 </h6>
                                 <h6 class="">
-                                    Skills: @Model.SkillsRequired
+                                    Skills:
+                                    @foreach (var skill in Model.SkillsRequired)
+                                    {
+                                        <span class="">@skill.Name,</span>
+                                    }
                                 </h6>
                                 @if (Model.TotalSkillsMatched != 0)
                                 {
@@ -159,7 +168,11 @@
                                             <span>skills</span>
                                         }
                                         @Model.TotalSkillsMatched out of @Model.TotalSkillsRequired :
-                                        <span>@Model.SkillsMatched</span>
+
+                                        @foreach (var skillMatched in Model.SkillsMatched)
+                                        {
+                                            <span>@skillMatched,</span>
+                                        }
                                     </h6>
                                 }
                                 <h6 class="">

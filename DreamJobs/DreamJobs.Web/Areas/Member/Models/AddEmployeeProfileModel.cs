@@ -28,26 +28,37 @@ namespace DreamJobs.Web.Areas.Member.Models
         public string PresentAddress { get; set; }
         [Required(ErrorMessage = "Please Enter Your Permanent Address")]
         public string PermanentAddress { get; set; }
-        [Required(ErrorMessage = "Please Enter Your Skills")]
-        public string Skills { get; set; }
+        [Required(ErrorMessage = "Please Select at least 1 Skill")]
+        public List<string> Skills { get; set; }
+        public IList<Skill> SkillList { get; set; }
 
         private IEmployeeService _employeeService;
+        private ISkillService _skillService;
 
         public AddEmployeeProfileModel()
         {
             _employeeService = Startup.AutofacContainer.Resolve<IEmployeeService>();
+            _skillService = Startup.AutofacContainer.Resolve<ISkillService>();
             DateOfBirth = DateTime.Now;
         }
 
-        public AddEmployeeProfileModel(IEmployeeService employeeService)
+        public AddEmployeeProfileModel(IEmployeeService employeeService,
+                                        ISkillService skillService)
         {
             _employeeService = employeeService;
+            _skillService = skillService;
             DateOfBirth = DateTime.Now;
+        }
+
+        internal async Task LoadAllSkills()
+        {
+            SkillList = await _skillService.GetAllSkillAsync();
         }
 
         public async Task AddProfileDetails(string userName)
         {
             var user = await base.GetUserAsync(userName);
+            var employeeSkills = new List<EmployeeSkill>();
 
             var employee = new Employee()
             {
@@ -60,9 +71,19 @@ namespace DreamJobs.Web.Areas.Member.Models
                 MobileNo = this.MobileNo,
                 PresentAddress = this.PresentAddress,
                 PermanentAddress = this.PermanentAddress,
-                Skills = this.Skills
             };
 
+            foreach (var skill in Skills)
+            {
+                var employeeSkill = new EmployeeSkill
+                {
+                    SkillId = Guid.Parse(skill),
+                    EmployeeId = user.Id
+                };
+                employeeSkills.Add(employeeSkill);
+            }
+
+            employee.EmployeeSkills = employeeSkills;
             await _employeeService.AddAsync(employee);
         }
     }
