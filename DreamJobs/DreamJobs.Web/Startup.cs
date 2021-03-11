@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Authorization;
 using DreamJobs.Membership.Security;
 using DreamJobs.Framework;
 using DreamJobs.Framework.Contexts;
+using DreamJobs.Membership.Seeds;
 
 namespace DreamJobs.Web
 {
@@ -140,7 +141,8 @@ namespace DreamJobs.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            InternalUserSeed internalUserSeed)
         {
             AutofacContainer = app.ApplicationServices.GetAutofacRoot();
             if (env.IsDevelopment())
@@ -175,6 +177,9 @@ namespace DreamJobs.Web
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            internalUserSeed.MigrateAsync().Wait();
+            internalUserSeed.SeedAsync().Wait();
         }
     }
 }
