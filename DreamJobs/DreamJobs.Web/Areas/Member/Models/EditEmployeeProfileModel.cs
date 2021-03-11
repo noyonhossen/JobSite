@@ -27,8 +27,6 @@ namespace DreamJobs.Web.Areas.Member.Models
         public string PresentAddress { get; set; }
         [Required(ErrorMessage = "Please Enter Your Permanent Address")]
         public string PermanentAddress { get; set; }
-        [Required(ErrorMessage = "Please Enter Your Skills")]
-        public string Skills { get; set; }
 
         private IEmployeeService _employeeService;
 
