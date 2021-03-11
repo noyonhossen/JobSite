@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using DreamJobs.Framework.Entities;
 using DreamJobs.Framework.Services;
+using DreamJobs.Membership.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace DreamJobs.Web.Models
         {
             var employee = new Employee();
             var jobDetails = await _jobService.GetJobDetailsAsync(jobId);
+            var claims = await base.GetUserClaimsAsync(userName);
 
             var jobDetail = new JobDetailsModel
             {
@@ -61,7 +63,7 @@ namespace DreamJobs.Web.Models
                 SkillsRequired = await _skillService.GetJobSkillsAsync(jobDetails.JobSkills)
             };
 
-            if (userName != null)
+            if (userName != null && claims.Where(x => x.Type == MembershipClaims.MemberClaimType).Any())
             {
                 employee = await base.GetEmployeeAsync(userName);
                 jobDetail.SkillsMatched = await _skillService.GetMatchedSkillsAsync(jobDetail.SkillsRequired, employee.EmployeeSkills);
