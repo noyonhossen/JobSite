@@ -7,10 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DreamJobs.Web.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area("Admin"),Authorize(Policy = "InternalUser")]
     public class DashboardController : Controller
     {
-        [Authorize]
         public IActionResult Index()
         {
             return View();
