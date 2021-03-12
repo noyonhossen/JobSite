@@ -192,5 +192,10 @@ namespace DreamJobs.Web.Controllers
             await _signInService.SignOutAsync();
             return LocalRedirect(returnUrl);
         }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }
