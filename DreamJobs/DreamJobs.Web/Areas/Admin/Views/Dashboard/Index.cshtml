@@ -1,13 +1,53 @@
-﻿
+﻿@model AdminDashboardModel
+
 @{
     ViewData["Title"] = "Dashboard";
 }
 
+<div class="content">
+    <div class="row pt-3">
+        <div class="col-4">
+            <div class="card text-center card-box-shadow">
+                <div class="card-body">
+                    <span class="text-primary border border-primary border-3 rounded-circle p-3 mb-3 mt-1">@Model.TotalCompanies</span>
+                    <h5 class="mt-3">Total Company</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card text-center card-box-shadow">
+                <div class="card-body">
+                    <span class="text-primary border border-primary border-3 rounded-circle p-3 mb-3 mt-1">@Model.TotalJobsPosted</span>
+                    <h5 class="mt-3">Total Job Posted</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card text-center card-box-shadow">
+                <div class="card-body">
+                    <span class="text-primary border border-primary border-3 rounded-circle p-3 mb-3 mt-1">@Model.TotalJobsPostedToday</span>
+                    <h5 class="mt-3">Job posted today</h5>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- Main content -->
-<section class="content">
-    <div class="container-fluid">
-        Admin Home Page
-    </div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
+    <div class="row pt-3">
+        <div class="col-3">
+            
+        </div>
+        <div class="col-6">
+            <div class="card text-center card-box-shadow">
+                <div class="card-body">
+                    <span class="text-primary border border-primary border-3 rounded-circle p-3 mb-3 mt-1">@Model.TotalEmployee</span>
+                    <h5 class="mt-3">Total User</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            
+        </div>
+    </div>
+</div>
+
+

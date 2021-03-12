@@ -25,6 +25,12 @@ namespace DreamJobs.Framework.Services
             return employees.FirstOrDefault();
         }
 
+        public async Task<int> GetTotalEmployeeAsync()
+        {
+            var totalEmployees = await _employeeUnitOfWork.EmployeeRepository.GetCountAsync();
+            return totalEmployees;
+        }
+
         public async Task UpdateAsync(Employee employee)
         {
             await _employeeUnitOfWork.EmployeeRepository.EditAsync(employee);
