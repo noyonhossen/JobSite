@@ -3,6 +3,19 @@
     ViewData["Title"] = "View Job Details";
 }
 
-<partial name="_JobDetails" model="@Model.JobDetails" />
+<div class="row">
+    <div class="col-12">
+        <div class="float-right text-right">
+            <a class="btn btn-primary mb-1" asp-area="Company" asp-controller="Job" asp-action="Edit" asp-route-jobId="@Model.JobDetails.JobId">
+                <i class="nav-icon far fa-edit"></i> Edit Job
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <partial name="_JobDetails" model="@Model.JobDetails" />
+    </div>
+</div>
 
 

@@ -6,6 +6,7 @@ namespace DreamJobs.Web.Models
 {
     public class JobDetailsModel
     {
+        public Guid JobId { get; set; }
         public string CompanyName { get; set; }
         public string JobTitle { get; set; }
         public string JobContext { get; set; }
