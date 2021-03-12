@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DreamJobs.Web.Areas.Admin.Models;
 using DreamJobs.Web.Areas.Member.Models;
 using Microsoft.AspNetCore.Mvc;
 
