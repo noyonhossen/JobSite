@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DreamJobs.Web.Areas.Company.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DreamJobs.Web.Areas.Company.Controllers
 {
-    [Area("Company")]
+    [Area("Company"), Authorize(Policy = "CompanyPolicy")]
     public class JobController : Controller
     {
         [HttpGet]

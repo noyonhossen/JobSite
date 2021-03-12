@@ -4,11 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using DreamJobs.Web.Areas.Admin.Models;
 using DreamJobs.Web.Areas.Member.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DreamJobs.Web.Areas.Member.Controllers
 {
-    [Area("Member")]
+    [Area("Member"), Authorize(Policy = "MemberPolicy")]
     public class EmployeeProfileController : Controller
     {
         public async Task<IActionResult> ViewEmployeeProfile()

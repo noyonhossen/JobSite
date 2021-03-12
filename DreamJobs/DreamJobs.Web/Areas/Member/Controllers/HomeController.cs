@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DreamJobs.Web.Areas.Member.Controllers
 {
-    [Area("Member")]
+    [Area("Member"), Authorize(Policy = "MemberPolicy")]
     public class HomeController : Controller
     {
         public IActionResult Index()

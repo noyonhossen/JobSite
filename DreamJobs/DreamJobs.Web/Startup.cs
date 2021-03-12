@@ -121,7 +121,7 @@ namespace DreamJobs.Web
                     policy.Requirements.Add(new InternalUserRequirement());
                 });
 
-                options.AddPolicy("InstructorPolicy", policy =>
+                options.AddPolicy("CompanyPolicy", policy =>
                 {
                     policy.RequireAuthenticatedUser();
                     policy.Requirements.Add(new CompanyRequirement());
@@ -153,6 +153,7 @@ namespace DreamJobs.Web
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseStatusCodePagesWithReExecute("/Error/PageNotFound/{0}");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }

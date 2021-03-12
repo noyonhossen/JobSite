@@ -16,15 +16,15 @@
             @{
                 if (claims.Where(x => x.Type == MembershipClaims.AdminClaimType).Any())
                 {
-                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                    <a class="nav-link text-dark" asp-area="Admin" asp-controller="Dashboard" asp-action="Index"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                 }
                 else if (claims.Where(x => x.Type == MembershipClaims.CompanyClaimType).Any())
                 {
-                    <a class="nav-link text-dark" asp-area="Company" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                    <a class="nav-link text-dark" asp-area="Company" asp-controller="Dashboard" asp-action="Index"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                 }
                 else if (claims.Where(x => x.Type == MembershipClaims.MemberClaimType).Any())
                 {
-                    <a class="nav-link text-dark" asp-area="Member" asp-controller="Home" asp-action="Index">Dashboard</a>
+                    <a class="nav-link text-dark" asp-area="Member" asp-controller="Home" asp-action="Index"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                 }
             }
         </li>
