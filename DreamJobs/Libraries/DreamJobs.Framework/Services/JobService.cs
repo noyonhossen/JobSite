@@ -24,6 +24,12 @@ namespace DreamJobs.Framework.Services
             await _jobUnitOfWork.SaveAsync();
         }
 
+        public async Task UpdateJobAsync(Job job)
+        {
+            await _jobUnitOfWork.JobRepository.EditAsync(job);
+            await _jobUnitOfWork.SaveAsync();
+        }
+
         public async Task<IList<Job>> GetCompanyAllJobAsync(Company companyInfo)
         {
             var companyJobList = await _jobUnitOfWork.JobRepository.GetAsync(c => c.CompanyId == companyInfo.Id,
@@ -48,7 +54,7 @@ namespace DreamJobs.Framework.Services
             var companyJobDetails = await _jobUnitOfWork.JobRepository.GetAsync(
                                                                         c => c.Id == jobId,
                                                                         null,
-                                                                        x => x.Include(i => i.JobSkills),
+                                                                        x => x.Include(i => i.JobSkills).Include(j =>j.Company),
                                                                         false);
             return companyJobDetails.FirstOrDefault();
         }

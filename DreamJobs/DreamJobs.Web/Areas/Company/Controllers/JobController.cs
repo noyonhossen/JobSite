@@ -44,5 +44,25 @@ namespace DreamJobs.Web.Areas.Company.Controllers
             await model.GetCompanyAllJobAsync(jobId);
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid jobId)
+        {
+            var model = new EditJobModel();
+            await model.LoadModelData(jobId);
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(EditJobModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                await model.EditJobAsync(User.Identity.Name, model.JobId);
+                return RedirectToAction("ViewJobDetails", "Job", new { Area = "Company", jobId = model.JobId });
+            }
+            return View(model);
+        }
     }
 }

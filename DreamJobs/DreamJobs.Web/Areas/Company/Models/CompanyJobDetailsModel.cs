@@ -33,6 +33,7 @@ namespace DreamJobs.Web.Areas.Company.Models
 
             var jobDetail = new JobDetailsModel
             {
+                JobId = jobDetails.Id,
                 CompanyName = jobDetails.Company.Name,
                 JobTitle = jobDetails.JobTitle,
                 JobContext = jobDetails.JobContext,
