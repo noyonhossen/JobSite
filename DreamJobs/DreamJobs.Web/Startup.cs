@@ -121,7 +121,7 @@ namespace DreamJobs.Web
                     policy.Requirements.Add(new InternalUserRequirement());
                 });
 
-                options.AddPolicy("InstructorPolicy", policy =>
+                options.AddPolicy("CompanyPolicy", policy =>
                 {
                     policy.RequireAuthenticatedUser();
                     policy.Requirements.Add(new CompanyRequirement());
