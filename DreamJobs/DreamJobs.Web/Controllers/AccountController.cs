@@ -53,7 +53,7 @@ namespace DreamJobs.Web.Controllers
 
                 if (result.Succeeded && user != null)
                 {
-                    return RedirectToAction("Index", "Home", new { Area = "Member" });
+                    return RedirectToAction("AddEmployeeProfile", "EmployeeProfile", new { Area = "Member" });
                 }
 
                 foreach (var error in result.Errors)
