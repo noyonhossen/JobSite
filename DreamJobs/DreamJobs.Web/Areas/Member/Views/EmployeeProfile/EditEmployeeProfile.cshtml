@@ -98,7 +98,38 @@
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            
+                            <div class="form-group pt-2">
+                                <label asp-for="Skills">Skills</label>
+                                <select class="form-control" asp-for="Skills" required multiple>
+                                    @foreach (var skill in Model.AllSkills)
+                                    {
+                                        bool isExist = false;
+                                        foreach (var employeeSkill in @Model.EmployeeSkillList)
+                                        {
+                                            if (skill.Id == employeeSkill.Id)
+                                            {
+                                                isExist = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (isExist == true)
+                                        {
+                                            <option value="@skill.Id" selected>@skill.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@skill.Id">@skill.Name</option>
+                                        }
+                                    }
+                                </select>
+                                <p class="form-text">
+                                    Hold down the Ctrl to select multiple options.
+                                </p>
+                                <p class="text-danger my-2">
+                                    <span asp-validation-for="Skills"></span>
+                                </p>
+                            </div>
                         </div>
                         <div class="col-6">
 

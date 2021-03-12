@@ -33,7 +33,6 @@ namespace DreamJobs.Web.Models
             var employee = new Employee();
             var jobCardShortLists = new List<JobCardShortListModel>();
             var jobs = await _jobService.GetJobsByCategoryAsync(category);
-            var claims = await base.GetUserClaimsAsync(userName);
 
             foreach (var job in jobs)
             {
@@ -51,11 +50,15 @@ namespace DreamJobs.Web.Models
                     SkillsRequired = await _skillService.GetJobSkillsAsync(job.JobSkills)
                 };
 
-                if (userName != null && claims.Where(x => x.Type == MembershipClaims.MemberClaimType).Any())
+                if (userName != null)
                 {
-                    employee = await base.GetEmployeeAsync(userName);
-                    jobCardShortList.SkillsMatched = await _skillService.GetMatchedSkillsAsync(jobCardShortList.SkillsRequired, employee.EmployeeSkills);
-                    jobCardShortList.TotalSkillsMatched = jobCardShortList.SkillsMatched.Count;
+                    var claims = await base.GetUserClaimsAsync(userName);
+                    if(claims.Where(x => x.Type == MembershipClaims.MemberClaimType).Any())
+                    {
+                        employee = await base.GetEmployeeAsync(userName);
+                        jobCardShortList.SkillsMatched = await _skillService.GetMatchedSkillsAsync(jobCardShortList.SkillsRequired, employee.EmployeeSkills);
+                        jobCardShortList.TotalSkillsMatched = jobCardShortList.SkillsMatched.Count;
+                    }
                 }
                 
                 jobCardShortList.TotalSkillsRequired = jobCardShortList.SkillsRequired.Count;
