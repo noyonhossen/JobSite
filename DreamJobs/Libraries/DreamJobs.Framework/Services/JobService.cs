@@ -38,7 +38,14 @@ namespace DreamJobs.Framework.Services
                                                                             false);
             return companyJobList;
         }
-        
+
+        public async Task<int> GetCompanyJobCount(Company companyInfo)
+        {
+            var totalJobs = await _jobUnitOfWork.JobRepository.GetCountAsync(
+                                                c => c.CompanyId == companyInfo.Id);
+            return totalJobs;
+        }
+
         public async Task<IList<Job>> GetJobsByCategoryAsync(string category)
         {
             var jobs = await _jobUnitOfWork.JobRepository.GetAsync(

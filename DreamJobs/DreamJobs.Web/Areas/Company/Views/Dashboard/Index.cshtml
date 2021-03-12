@@ -1,7 +1,28 @@
-﻿
+﻿@model DashboardModel
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Dashboard";
 }
 
-<h1>Company Index</h1>
+<div class="content">
+    <div class="">
+        <h1>Hello,</h1>
+        <h3>Finds a lot of talent from DreamJobs...</h3>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="card text-center card-box-shadow">
+                    <div class="card-body">
+                        <span class="text-primary border border-primary border-3 rounded-circle p-3 mb-3 mt-1">@Model.TotalJobPosted</span>
+                        <h5 class="mt-3">Job Posted by your company</h5>
+                        <a asp-area="Company" asp-controller="Job" asp-action="ViewJobs" class="btn bg-success"><i class="fas fa-eye"></i> View Jobs</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+</div>
 

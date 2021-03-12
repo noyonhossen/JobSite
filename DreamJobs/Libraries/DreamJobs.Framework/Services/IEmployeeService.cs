@@ -11,6 +11,6 @@ namespace DreamJobs.Framework.Services
         Task<Employee> GetEmployeeDetailsAsync(Guid id);
         Task UpdateAsync(Employee employee);
         Task AddAsync(Employee employee);
-
+        Task<int> GetTotalEmployeeAsync();
     }
 }

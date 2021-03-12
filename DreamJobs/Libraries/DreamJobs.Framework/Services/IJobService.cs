@@ -14,5 +14,6 @@ namespace DreamJobs.Framework.Services
         Task<Job> GetJobDetailsAsync(Guid jobId);
         Task<int> GetTotalJobsAsync();
         Task<int> GetJobsPostedTodayAsync();
+        Task<int> GetCompanyJobCount(Company companyInfo);
     }
 }
